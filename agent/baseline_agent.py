@@ -1,13 +1,10 @@
-import random
-
-class RandomAgent:
-    def __init__(self):
-        self.actions = [
-            "mark_spam",
-            "work",
-            "personal",
-            "promotion"
-        ]
-
+class BaselineAgent:
     def act(self, state):
-        return random.choice(self.actions)
+        text = state["text"].lower()
+
+        spam_keywords = ["free", "win", "offer", "prize", "discount", "lottery"]
+
+        if any(word in text for word in spam_keywords):
+            return "spam"
+
+        return "not_spam"

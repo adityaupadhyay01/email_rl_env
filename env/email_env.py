@@ -1,31 +1,27 @@
-import random
-from db.fetch_data import fetch_emails
-from env.state_processor import process_state
+def step(self, action):
+    reward = 0
+    done = True
 
-class EmailEnv:
-    def __init__(self):
-        self.data = fetch_emails()
-        self.current = None
+    true_label = self.current["label"]
+    text = self.current["text"].lower()
 
-    def reset(self):
-        self.current = random.choice(self.data)
-        return process_state(self.current)
+    # Correct spam detection
+    if action == "spam" and true_label == "spam":
+        reward += 1
 
-    def step(self, action):
-        reward = 0
-        done = True
+    elif action == "not_spam" and true_label == "not_spam":
+        reward += 1
 
-        # spam detection
-        if action == "mark_spam":
-            if self.current["label"] == "spam":
-                reward += 1
-            else:
-                reward -= 1
+    else:
+        reward -= 0.5
 
-        # category
-        elif action == self.current["category"]:
-            reward += 2
-        else:
-            reward -= 1
+    # Bonus: keyword match
+    if "free" in text or "win" in text:
+        if action == "spam":
+            reward += 0.5
 
-        return process_state(self.current), reward, done, {}
+    # Penalty for wrong spam
+    if action == "spam" and true_label != "spam":
+        reward -= 0.5
+
+    return self._get_state(), reward, done
