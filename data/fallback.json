@@ -1,0 +1,16 @@
+[
+  {
+    "text": "Win a free iPhone!!!",
+    "label": "spam",
+    "category": "promotion",
+    "priority": "low",
+    "reply": "ignore"
+  },
+  {
+    "text": "Meeting at 5 PM",
+    "label": "not_spam",
+    "category": "work",
+    "priority": "high",
+    "reply": "acknowledge"
+  }
+]
