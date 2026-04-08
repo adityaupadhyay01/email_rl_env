@@ -12,7 +12,9 @@ def run():
 
     state = env.reset()
 
-    for step in range(1, 10):
+
+    for step in range(1, len(env.data) + 1):
+        
         action = agent.act(state)
 
         next_state, reward, done = env.step(action)
