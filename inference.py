@@ -1,3 +1,9 @@
+import os
+
+API_BASE_URL = os.getenv("API_BASE_URL", "https://router.huggingface.co/v1")
+MODEL_NAME = os.getenv("MODEL_NAME", "baseline-model")
+HF_TOKEN = os.getenv("HF_TOKEN")
+
 from env.email_env import EmailEnv
 from agent.baseline_agent import BaselineAgent
 
