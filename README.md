@@ -108,8 +108,8 @@ This project is successfully deployed using:
 
 ## Team
 
-Aditya Upadhyay
-Shreya Pathak
+Aditya Upadhyay  
+Shreya Pathak  
 Anurag Mishra
 
 ## Final Note
