@@ -1,0 +1,21 @@
+id: email_rl_env
+
+env:
+  name: email_rl
+  description: Email classification RL environment
+
+entrypoint:
+  reset: /reset
+  step: /step
+
+actions:
+  type: discrete
+  values:
+    - spam
+    - not_spam
+
+observations:
+  type: dict
+
+rewards:
+  type: float
