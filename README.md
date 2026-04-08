@@ -1,4 +1,4 @@
-# Email RL Environment — Intelligent Spam Classification System
+# Email RL Environment Intelligent Spam Classification System
 
 ## Team: **Kairos**
 
