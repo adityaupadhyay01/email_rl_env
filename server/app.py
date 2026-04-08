@@ -20,3 +20,6 @@ def step(action: dict):
     action_value = action.get("action")
     state, reward, done = env.step(action_value)
     return {"state": state, "reward": reward, "done": done}
+
+    def main():
+    return app
