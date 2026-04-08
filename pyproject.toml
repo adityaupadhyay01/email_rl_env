@@ -1,0 +1,9 @@
+[project]
+name = "email-rl-env"
+version = "0.1.0"
+description = "Email RL Environment"
+dependencies = []
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
