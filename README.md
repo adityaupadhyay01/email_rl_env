@@ -1,7 +1,5 @@
 # Email RL Environment Intelligent Spam Classification System
 
-## Team: **Kairos**
-
 ## Project Overview
 
 This project implements a **Reinforcement Learning (RL) based Email Classification System** that intelligently categorizes emails into:
