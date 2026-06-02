@@ -104,11 +104,6 @@ This project is successfully deployed using:
 *  Integrate LLM-based classification
 *  Real-time email streaming
 
-## Team
-
-Aditya Upadhyay  
-Shreya Pathak  
-Anurag Mishra
 
 ## Final Note
 This project demonstrates the power of combining **Reinforcement Learning + Backend Systems + Deployment**, creating a scalable and intelligent email classification system.
