@@ -1,0 +1,14 @@
+Authentication-Results: mx.demo-inbox.local; spf=fail
+ smtp.mailfrom=bharatbank-secure.example; dkim=none; dmarc=fail
+ header.from=bharatbank-secure.example
+From: Bharat Bank KYC <kyc-update@bharatbank-secure.example>
+To: aditya@demo-inbox.local
+Subject: KYC update zaroori hai
+Date: Wed, 14 Oct 2026 10:17:00 +0530
+X-Demo-Scenario: E15 (hand-written, label phishing)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Aapka KYC expire ho gaya hai. Aapka account band ho jayega. Turant update kar=
+ein: http://bharatbank-secure.example/kyc

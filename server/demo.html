@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Live Triage Demo</title>
+<style>
+  :root {
+    color-scheme: light;
+    --surface: #f7f8fa; --panel: #ffffff; --line: #e3e5e9; --hover: #f1f3f6;
+    --text: #0f141b; --text-2: #4b5563; --muted: #7b8494; --accent: #2a6fd6;
+    --good: #12895a; --warn: #b7791f; --warn-bg: #fdf6e7; --bad: #c63b3b; --bad-bg: #fbeceb;
+    --good-bg: #e8f5ee; --info-bg: #eaf1fc; --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --surface: #0f141b; --panel: #141a23; --line: #263040; --hover: #1a2230;
+      --text: #eceff3; --text-2: #b3bcc8; --muted: #7e8895; --accent: #6aa8ff;
+      --good: #4cc38a; --warn: #e8b04e; --warn-bg: #2a2416; --bad: #f07272; --bad-bg: #2c1a1c;
+      --good-bg: #16261f; --info-bg: #152238;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--surface); color: var(--text);
+         font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  header { border-bottom: 1px solid var(--line); background: var(--panel); }
+  .bar { max-width: 1280px; margin: 0 auto; padding: 14px 16px; display: flex; flex-wrap: wrap;
+         gap: 12px 20px; align-items: center; justify-content: space-between; }
+  h1 { font-size: 20px; margin: 0; letter-spacing: -0.01em; }
+  h1 small { display: block; font-size: 13px; font-weight: 400; color: var(--muted); }
+  h2 { font-size: 15px; margin: 0 0 10px; }
+  .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  select, button, textarea { font: inherit; color: inherit; }
+  select { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; }
+  button { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; cursor: pointer; }
+  button:hover { background: var(--hover); }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  button:disabled { opacity: .5; cursor: progress; }
+  a { color: var(--accent); }
+  main { max-width: 1280px; margin: 0 auto; padding: 20px 16px 48px; display: grid;
+         grid-template-columns: minmax(0, 400px) minmax(0, 1fr); gap: 20px; }
+  @media (max-width: 900px) { main { grid-template-columns: minmax(0, 1fr); } }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
+  .stack { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+  .tabs { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 10px; }
+  .tabs button { border-radius: 999px; padding: 4px 12px; font-size: 13px; }
+  .tabs button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .msg { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 10px; align-items: center;
+         padding: 10px 4px; border-top: 1px solid var(--line); }
+  .msg:first-child { border-top: 0; }
+  .msg .who { font-size: 13px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .msg .subj { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .msg .acts { display: flex; gap: 6px; grid-row: span 2; }
+  .msg .acts button { font-size: 13px; padding: 4px 10px; }
+  .empty { color: var(--muted); font-size: 14px; padding: 8px 4px; }
+  textarea { width: 100%; min-height: 150px; resize: vertical; background: var(--surface);
+             border: 1px solid var(--line); border-radius: 8px; padding: 10px; font: 13px/1.45 var(--mono); }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+  .hint { font-size: 13px; color: var(--muted); margin: 6px 0 0; }
+  .pill { display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--text-2); }
+  .pill.quarantine { background: var(--bad-bg); color: var(--bad); border-color: transparent; }
+  .pill.escalate { background: var(--warn-bg); color: var(--warn); border-color: transparent; }
+  .pill.allow { background: var(--good-bg); color: var(--good); border-color: transparent; }
+
+  .email-head { display: grid; gap: 2px; }
+  .email-head .subj { font-size: 17px; font-weight: 600; overflow-wrap: anywhere; }
+  .email-head .meta { font-size: 13px; color: var(--muted); overflow-wrap: anywhere; }
+  .body { margin-top: 10px; font-size: 14px; color: var(--text-2); max-height: 140px; overflow: auto;
+          white-space: pre-wrap; overflow-wrap: anywhere; border-left: 3px solid var(--line); padding-left: 10px; }
+  .steps { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+  .step { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; animation: in .35s ease both; }
+  @keyframes in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .step-top { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; align-items: baseline; }
+  .tool { font: 600 14px var(--mono); }
+  .lat { font: 12px var(--mono); color: var(--muted); }
+  .risk { display: grid; grid-template-columns: 70px minmax(0, 1fr) 44px; gap: 8px; align-items: center; margin-top: 8px; font-size: 13px; color: var(--text-2); }
+  .meter { height: 8px; background: var(--hover); border-radius: 4px; overflow: hidden; }
+  .meter span { display: block; height: 100%; border-radius: 4px; }
+  .finding { margin-top: 8px; font-size: 14px; overflow-wrap: anywhere; }
+  ul.sig { margin: 6px 0 0; padding-left: 18px; font-size: 13px; color: var(--text-2); }
+  .gaps { margin-top: 8px; background: var(--warn-bg); border-radius: 8px; padding: 8px 10px; font-size: 13px; }
+  .gaps b { color: var(--warn); }
+  .gaps ul { margin: 4px 0 0; padding-left: 18px; color: var(--text-2); overflow-wrap: anywhere; }
+  .verdict { border-radius: 10px; padding: 14px 16px; display: grid; gap: 8px; animation: in .35s ease both; }
+  .verdict.quarantine { background: var(--bad-bg); }
+  .verdict.escalate { background: var(--warn-bg); }
+  .verdict.allow { background: var(--good-bg); }
+  .verdict .big { font-size: 20px; font-weight: 700; }
+  .verdict.quarantine .big { color: var(--bad); }
+  .verdict.escalate .big { color: var(--warn); }
+  .verdict.allow .big { color: var(--good); }
+  .verdict .action { font: 13px var(--mono); }
+  pre.report { margin: 0; padding: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+               font: 12.5px/1.5 var(--mono); white-space: pre-wrap; overflow-wrap: anywhere; }
+  .log { font: 12.5px/1.6 var(--mono); color: var(--text-2); max-height: 220px; overflow: auto; }
+  .log div { border-top: 1px solid var(--line); padding: 4px 0; overflow-wrap: anywhere; }
+  .log div:first-child { border-top: 0; }
+  .placeholder { color: var(--muted); }
+  .flow { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 13px; color: var(--muted); margin-top: 8px; }
+  .flow span.on { color: var(--text); font-weight: 600; }
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <h1>Live triage demo<small>Controlled demo inbox: every action below really moves the message</small></h1>
+    <div class="controls">
+      <label for="agent">Agent</label>
+      <select id="agent"></select>
+      <button id="reset" type="button">Reset demo inbox</button>
+      <a href="/">Benchmark dashboard</a>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="stack">
+    <section class="panel" aria-labelledby="mb-title">
+      <h2 id="mb-title">Mailbox</h2>
+      <div class="tabs" id="tabs" role="toolbar" aria-label="Folders"></div>
+      <div id="list"></div>
+    </section>
+    <section class="panel" aria-labelledby="paste-title">
+      <h2 id="paste-title">Paste a suspicious email</h2>
+      <textarea id="raw" spellcheck="false" placeholder="Paste the full email source (with headers), or just the text.&#10;&#10;From: Bank Alerts &lt;alerts@example.com&gt;&#10;Subject: ...&#10;&#10;Body..."></textarea>
+      <div class="row">
+        <button id="triage-raw" class="primary" type="button">Triage pasted email</button>
+        <button id="example" type="button">Load an example</button>
+      </div>
+      <p class="hint">Without headers, SPF/DKIM/DMARC cannot be checked; the agent reports that as unavailable instead of assuming the email is safe.</p>
+    </section>
+  </div>
+
+  <div class="stack">
+    <section class="panel" aria-labelledby="trace-title">
+      <h2 id="trace-title">Investigation</h2>
+      <div class="flow" id="flow">
+        <span data-k="input">1 Email in</span>&rarr;<span data-k="evidence">2 Evidence</span>&rarr;<span data-k="decision">3 Decision</span>&rarr;<span data-k="report">4 Report</span>&rarr;<span data-k="action">5 Action</span>
+      </div>
+      <div id="email" style="margin-top:14px"><p class="placeholder">Pick a message in the inbox and press Triage, or paste one.</p></div>
+      <div class="steps" id="steps"></div>
+    </section>
+    <section class="panel" aria-labelledby="dec-title">
+      <h2 id="dec-title">Decision and incident report</h2>
+      <div id="decision"><p class="placeholder">No decision yet.</p></div>
+    </section>
+    <section class="panel" aria-labelledby="log-title">
+      <h2 id="log-title">Audit log</h2>
+      <div class="log" id="log"></div>
+    </section>
+  </div>
+</main>
+<script>
+const $ = (id) => document.getElementById(id);
+const FOLDERS = [["inbox", "Inbox"], ["review", "Human review"], ["quarantine", "Quarantine"], ["delivered", "Delivered"]];
+const COST = { check_content: 0.05, check_sender: 0.10, check_url: 0.15 };
+const LABEL = { quarantine: "Quarantined", escalate: "Escalated to a human", allow: "Allowed" };
+let folder = "inbox", state = null, busy = false;
+
+function el(tag, attrs = {}, ...kids) {
+  const node = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === "class") node.className = v; else if (k === "text") node.textContent = v;
+    else if (k.startsWith("on")) node.addEventListener(k.slice(2), v); else node.setAttribute(k, v);
+  }
+  for (const kid of kids) if (kid != null) node.append(kid);
+  return node;
+}
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+async function api(path, body) {
+  const res = await fetch(path, body ? { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) } : {});
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.detail || res.statusText);
+  return data;
+}
+function flow(k) {
+  const order = ["input", "evidence", "decision", "report", "action"];
+  document.querySelectorAll("#flow span").forEach((s) => s.classList.toggle("on", order.indexOf(s.dataset.k) <= order.indexOf(k)));
+}
+function riskColor(r) { return r >= 0.8 ? "var(--bad)" : r >= 0.45 ? "var(--warn)" : "var(--good)"; }
+
+async function load() {
+  state = await api("/api/mailbox");
+  const sel = $("agent");
+  if (!sel.options.length) {
+    const names = { investigator: "Rule-based investigator", pg: "Policy gradient (trained)", llm: "LLM agent" };
+    for (const a of state.agents) sel.append(el("option", { value: a, text: names[a] || a }));
+  }
+  render();
+}
+function render() {
+  const tabs = $("tabs"); tabs.replaceChildren();
+  for (const [key, name] of FOLDERS) {
+    tabs.append(el("button", { type: "button", "aria-pressed": String(folder === key),
+      onclick: () => { folder = key; render(); }, text: `${name} (${state.folders[key].length})` }));
+  }
+  const list = $("list"); list.replaceChildren();
+  const items = state.folders[folder];
+  if (!items.length) list.append(el("p", { class: "empty", text: "Nothing here." }));
+  for (const m of items) {
+    const acts = el("div", { class: "acts" });
+    if (folder === "inbox") acts.append(el("button", { class: "primary", type: "button", text: "Triage", onclick: () => run({ file: m.file }) }));
+    if (folder === "review") {
+      acts.append(el("button", { type: "button", text: "Release", onclick: () => review(m.file, "release") }));
+      acts.append(el("button", { type: "button", text: "Quarantine", onclick: () => review(m.file, "quarantine") }));
+    }
+    if (folder !== "inbox") acts.append(el("button", { type: "button", text: "View", onclick: () => view(m) }));
+    const tag = m.decision ? el("span", { class: `pill ${m.decision}`, text: `${m.decision} ${Math.round((m.confidence || 0) * 100)}%` }) : null;
+    const human = m.human ? el("span", { class: "pill", text: `analyst: ${m.human.verdict}` }) : null;
+    list.append(el("div", { class: "msg" },
+      el("div", { class: "subj", text: m.subject || "(no subject)" }), acts,
+      el("div", { class: "who" }, document.createTextNode(`${m.from_name ? m.from_name + " · " : ""}${m.from} `), tag, document.createTextNode(" "), human)));
+  }
+  const log = $("log"); log.replaceChildren();
+  for (const e of state.log) log.append(el("div", { text: `${e.at.slice(11, 19)}  ${e.actor.padEnd(14)} ${e.message}` }));
+}
+
+function showEmail(email, authHeaders) {
+  const box = $("email"); box.replaceChildren();
+  box.append(el("div", { class: "email-head" },
+    el("div", { class: "subj", text: email.subject || "(no subject)" }),
+    el("div", { class: "meta", text: `From ${email.sender_name ? email.sender_name + " " : ""}<${email.sender || "unknown"}>` })));
+  if (email.text) box.append(el("div", { class: "body", text: email.text }));
+  if (email.urls && email.urls.length) box.append(el("p", { class: "hint", text: `Links (shown as text, not clickable): ${email.urls.slice(0, 4).join("  ")}` }));
+  if (authHeaders && authHeaders.length) box.append(el("p", { class: "hint", text: `Authentication-Results: ${authHeaders[0].slice(0, 220)}` }));
+}
+
+function stepCard(step) {
+  const ev = step.evidence;
+  const card = el("div", { class: "step" });
+  const latency = step.decided_by && step.decided_by.startsWith("llm") ? `model ${step.agent_ms} ms · ` : "";
+  card.append(el("div", { class: "step-top" },
+    el("span", { class: "tool", text: step.action }),
+    el("span", { class: "lat", text: `${latency}tool ${step.tool_ms} ms · cost ${(COST[step.action] || 0).toFixed(2)}` })));
+  if (!ev) { card.append(el("div", { class: "finding", text: step.error || "" })); return card; }
+  if (ev.risk == null) {
+    card.append(el("div", { class: "finding", text: ev.finding }));
+  } else {
+    const meter = el("div", { class: "meter" }, el("span", { style: `width:${Math.round(ev.risk * 100)}%;background:${riskColor(ev.risk)}` }));
+    card.append(el("div", { class: "risk" }, el("span", { text: "risk" }), meter, el("b", { text: ev.risk.toFixed(2) })));
+    card.append(el("div", { class: "finding", text: ev.finding }));
+  }
+  if (ev.signals && ev.signals.length > 1) {
+    const ul = el("ul", { class: "sig" });
+    for (const s of ev.signals.slice(1, 5)) ul.append(el("li", { text: s }));
+    card.append(ul);
+  }
+  if (ev.unavailable && ev.unavailable.length) {
+    const ul = el("ul");
+    for (const u of ev.unavailable) ul.append(el("li", { text: u }));
+    card.append(el("div", { class: "gaps" }, el("b", { text: `Evidence unavailable (${Math.round((1 - ev.coverage) * 100)}% of this check), not treated as safe` }), ul));
+  }
+  return card;
+}
+
+async function run(body) {
+  if (busy) return; busy = true; setBusy(true);
+  $("steps").replaceChildren(); $("decision").replaceChildren(el("p", { class: "placeholder", text: "Investigating..." }));
+  flow("input");
+  try {
+    if (body.file) {
+      const msg = await api(`/api/message?folder=inbox&file=${encodeURIComponent(body.file)}`);
+      showEmail(msg.email, msg.auth_headers);
+    }
+    const result = await api("/api/triage", { ...body, agent: $("agent").value });
+    if (!body.file) showEmail({ subject: result.email.subject, sender: result.email.sender, sender_name: result.email.sender_name });
+    flow("evidence");
+    for (const step of result.steps) {
+      if (step.kind === "decision") break;
+      $("steps").append(stepCard(step));
+      await sleep(550);
+    }
+    showDecision(result);
+    await load();
+  } catch (e) {
+    $("decision").replaceChildren(el("p", { text: `Error: ${e.message}` }));
+  } finally { busy = false; setBusy(false); }
+}
+
+function showDecision(r) {
+  flow("decision");
+  const box = $("decision"); box.replaceChildren();
+  const conf = Math.round(r.confidence * 100);
+  const v = el("div", { class: `verdict ${r.decision}` },
+    el("div", { class: "big", text: LABEL[r.decision] }),
+    el("div", { class: "risk" }, el("span", { text: "confidence" }),
+      el("div", { class: "meter" }, el("span", { style: `width:${conf}%;background:var(--accent)` })), el("b", { text: `${conf}%` })),
+    el("div", { text: r.reason || "" }),
+    el("div", { class: "lat", text: `${r.agent} · ${r.steps.length - 1} check(s) · ${r.total_ms} ms total${r.unavailable.length ? ` · ${r.unavailable.length} lookup(s) unavailable` : ""}` }));
+  if (r.action) v.append(el("div", { class: "action", text: `Action executed: ${r.action.message}` }));
+  box.append(v);
+  flow("report");
+  box.append(el("pre", { class: "report", style: "margin-top:12px", text: r.report }));
+  if (r.action) flow("action");
+  if (r.decision === "escalate" && r.action) {
+    box.append(el("div", { class: "row" },
+      el("button", { type: "button", text: "Analyst: release to inbox", onclick: () => review(r.file, "release") }),
+      el("button", { type: "button", text: "Analyst: confirm quarantine", onclick: () => review(r.file, "quarantine") })));
+  }
+}
+
+async function view(m) {
+  const msg = await api(`/api/message?folder=${m.folder}&file=${encodeURIComponent(m.file)}`);
+  showEmail(msg.email, msg.auth_headers);
+  $("steps").replaceChildren();
+  if (msg.triage) { for (const s of msg.triage.steps) if (s.kind !== "decision") $("steps").append(stepCard(s)); showDecision({ ...msg.triage, action: null }); }
+}
+async function review(file, verdict) {
+  try { await api("/api/review", { file, verdict, analyst: "analyst" }); await load(); }
+  catch (e) { alert(e.message); }
+}
+function setBusy(on) { document.querySelectorAll("button").forEach((b) => (b.disabled = on)); }
+
+$("reset").addEventListener("click", async () => { await api("/api/mailbox/reset", {}); folder = "inbox"; await load(); });
+$("example").addEventListener("click", () => {
+  $("raw").value = "From: SBI Alerts <alerts@sbi-kyc-verify.example>\nSubject: Urgent: KYC pending, account will be blocked\nDate: Wed, 14 Oct 2026 18:05:00 +0530\n\nDear customer, aapka KYC pending hai. Account 24 ghante mein band ho jayega.\nTurant verify karein: http://sbi-kyc-verify.example/login and enter your OTP.";
+});
+$("triage-raw").addEventListener("click", () => {
+  let raw = $("raw").value.trim();
+  if (!raw) return;
+  if (!/^[A-Za-z-]+:\s/.test(raw.split("\n")[0])) raw = `From: unknown <unknown@unknown.invalid>\nSubject: (pasted text)\n\n${raw}`;
+  run({ raw });
+});
+load().catch((e) => { $("list").textContent = `Could not load the mailbox: ${e.message}`; });
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+.env
+.git
+.github
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+tests/
+data/demo_inbox/live/
+data/intel_cache.json
