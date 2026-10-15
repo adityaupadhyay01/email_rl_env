@@ -1,0 +1,16 @@
+Authentication-Results: mx.demo-inbox.local; spf=pass
+ smtp.mailfrom=vendor-payments.example; dkim=pass
+ header.d=vendor-payments.example; dmarc=pass
+ header.from=vendor-payments.example
+From: Accounts Team <accounts@vendor-payments.example>
+To: aditya@demo-inbox.local
+Subject: Change in our bank account
+Date: Wed, 14 Oct 2026 12:31:00 +0530
+X-Demo-Scenario: E33 (hand-written, label phishing)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Dear customer, please note that our company bank account has changed. Kindly =
+process this month's invoice to the new account mentioned in the attached let=
+ter.

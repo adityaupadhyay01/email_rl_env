@@ -1,0 +1,15 @@
+Authentication-Results: mx.demo-inbox.local; spf=pass
+ smtp.mailfrom=bharatbank.example; dkim=pass header.d=bharatbank.example;
+ dmarc=pass header.from=bharatbank.example
+From: Bharat Bank <alerts@bharatbank.example>
+To: aditya@demo-inbox.local
+Subject: Your September statement is ready
+Date: Wed, 14 Oct 2026 14:45:00 +0530
+X-Demo-Scenario: E03 (hand-written, label legit)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Your account statement for September is ready. Log in to net banking to view =
+it: https://netbanking.bharatbank.example/statements. Never share your OTP or=
+ password with anyone.

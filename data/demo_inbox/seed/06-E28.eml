@@ -1,0 +1,14 @@
+Authentication-Results: mx.demo-inbox.local; spf=none
+ smtp.mailfrom=dealz-blast.example; dkim=none; dmarc=none
+ header.from=dealz-blast.example
+From: Dealz Blast <promo@dealz-blast.example>
+To: aditya@demo-inbox.local
+Subject: Win a free iPhone!!!
+Date: Wed, 14 Oct 2026 15:52:00 +0530
+X-Demo-Scenario: E28 (hand-written, label spam)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Win a free iPhone!!! Click here to enter the contest: http://dealz-blast.exam=
+ple/iphone

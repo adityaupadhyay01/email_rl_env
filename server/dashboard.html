@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Email Threat Triage</title>
+<style>
+  :root {
+    color-scheme: light;
+    --surface: #fcfcfb; --panel: #ffffff; --line: #e4e3df; --hover: #f4f3f0;
+    --text: #0b0b0b; --text-2: #52514e; --muted: #7a7974; --accent: #2a78d6;
+    --good: #0ca30c; --warning: #fab219; --serious: #ec835a; --critical: #d03b3b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --surface: #1a1a19; --panel: #222221; --line: #383835; --hover: #2b2b29;
+      --text: #f0efec; --text-2: #c3c2b7; --muted: #8f8e86; --accent: #3987e5;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--surface); color: var(--text);
+    font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 1040px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font-size: 26px; line-height: 1.2; margin: 0 0 6px; letter-spacing: -0.01em; }
+  h2 { font-size: 17px; margin: 0 0 4px; }
+  .sub { color: var(--text-2); margin: 0; }
+  .note { color: var(--muted); font-size: 13px; margin: 6px 0 0; }
+  section { margin-top: 36px; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; }
+
+  /* outcome keys: a coloured dot + icon + label, never colour alone */
+  .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex: none; }
+  .correct { background: var(--good); }
+  .escalated { background: var(--warning); }
+  .false_positive { background: var(--serious); }
+  .missed_threat { background: var(--critical); }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 14px 0 0; font-size: 13px; color: var(--text-2); }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+  /* one stacked bar per agent */
+  .agents { padding: 6px 18px 16px; margin-top: 14px; }
+  .agent-row { display: grid; grid-template-columns: 150px 1fr 76px; gap: 16px; align-items: center; padding: 14px 0; }
+  .agent-row + .agent-row { border-top: 1px solid var(--line); }
+  .agent-name { font-weight: 600; overflow-wrap: anywhere; }
+  .agent-name small { display: block; font-weight: 400; color: var(--muted); font-size: 12px; }
+  .bar { display: flex; gap: 2px; height: 20px; }
+  .seg { min-width: 3px; cursor: default; }
+  .seg:first-child { border-radius: 4px 0 0 4px; }
+  .seg:last-child { border-radius: 0 4px 4px 0; }
+  .seg:only-child { border-radius: 4px; }
+  .counts { display: flex; flex-wrap: wrap; gap: 2px 14px; margin-top: 7px; font-size: 13px; color: var(--text-2); }
+  .counts span { display: inline-flex; align-items: center; gap: 5px; }
+  .score { text-align: right; }
+  .score b { font-size: 22px; font-variant-numeric: tabular-nums; }
+  .score small { display: block; color: var(--muted); font-size: 12px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { padding: 9px 14px; text-align: right; border-top: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+  thead th { border-top: 0; color: var(--text-2); font-weight: 600; overflow-wrap: anywhere; }
+  th:first-child, td:first-child { text-align: left; font-weight: 400; color: var(--text-2); }
+  .scroll { overflow-x: auto; margin-top: 14px; }
+
+  .controls { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; margin-top: 14px; }
+  .tabs { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .tabs button {
+    border: 0; background: var(--panel); color: var(--text-2); padding: 7px 14px;
+    font: inherit; cursor: pointer; border-right: 1px solid var(--line);
+  }
+  .tabs button:last-child { border-right: 0; }
+  .tabs button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+  label.check { display: inline-flex; gap: 7px; align-items: center; color: var(--text-2); cursor: pointer; }
+
+  .inbox { margin-top: 14px; overflow: hidden; }
+  details + details { border-top: 1px solid var(--line); }
+  summary {
+    list-style: none; cursor: pointer; padding: 12px 16px;
+    display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; gap: 12px; align-items: center;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary:hover { background: var(--hover); }
+  .id { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+  .subject { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .from { color: var(--muted); font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .verdict { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px 12px; align-items: center; font-size: 13px; color: var(--text-2); }
+  .chip { border: 1px solid var(--line); border-radius: 999px; padding: 1px 9px; font-size: 12px; color: var(--text-2); }
+  .outcome { display: inline-flex; align-items: center; gap: 6px; color: var(--text); }
+  .reward { font-variant-numeric: tabular-nums; min-width: 44px; text-align: right; color: var(--text); }
+  .body { padding: 4px 16px 18px 72px; }
+  .body p { margin: 0 0 12px; color: var(--text-2); }
+  ol.steps { margin: 0 0 14px; padding-left: 20px; }
+  ol.steps li { margin-bottom: 5px; }
+  ol.steps code { font-size: 13px; }
+  ol.steps .cost { color: var(--muted); font-variant-numeric: tabular-nums; }
+  pre { margin: 0; padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; font-size: 12.5px; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+
+  .kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 14px; }
+  .kpi { padding: 14px 16px; border-top: 3px solid var(--accent); }
+  .kpi .lab { color: var(--muted); font-size: 13px; }
+  .kpi .big { font-size: 30px; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; line-height: 1.2; }
+  .kpi .cmp { color: var(--text-2); font-size: 13px; }
+  .two { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 16px; margin-top: 14px; }
+  .chart { padding: 14px 16px; }
+  .chart svg { width: 100%; height: auto; display: block; }
+  .chart .keys { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 13px; color: var(--text-2); margin-top: 8px; }
+  .chart .keys span { display: inline-flex; align-items: center; gap: 6px; }
+  .swatch { width: 18px; height: 0; border-top: 3px solid; display: inline-block; }
+  .limit { padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+  .step-box { border-left: 3px solid var(--line); padding: 6px 10px; font-size: 14px; color: var(--text-2); }
+  .step-box b { display: block; font-size: 12px; letter-spacing: .04em; color: var(--text); }
+  .step-box.warn { border-color: var(--serious); } .step-box.fix { border-color: var(--accent); }
+  td.hi { font-weight: 700; color: var(--text); }
+  @media (max-width: 760px) { .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } .two { grid-template-columns: minmax(0, 1fr); } }
+  #tip {
+    position: fixed; pointer-events: none; display: none; z-index: 5;
+    background: var(--text); color: var(--surface); padding: 5px 9px; border-radius: 6px; font-size: 13px;
+  }
+  .empty, .error { padding: 18px; color: var(--text-2); }
+  @media (max-width: 640px) {
+    .agent-row { grid-template-columns: 1fr 70px; }
+    .agent-row .bar-cell { grid-column: 1 / -1; grid-row: 2; }
+    summary { grid-template-columns: minmax(0, 1fr); }
+    .id { display: none; }
+    .verdict { justify-content: flex-start; }
+    .body { padding-left: 16px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Email Threat Triage</h1>
+    <p class="sub">A reinforcement-learning environment where an agent investigates each email, then decides to quarantine it, allow it, or hand it to a human.</p>
+    <p class="note"><a href="/demo">Open the live triage demo</a>: paste an email, watch the agent collect evidence, and see it quarantine or escalate the message.</p>
+  </header>
+
+  <section>
+    <h2>Held-out test set: 783 real public emails</h2>
+    <p class="sub">283 phishing (phishing_pot), 150 spam and 350 genuine emails (SpamAssassin). Never used for training or tuning. Same tools and rewards for every agent.</p>
+    <div class="kpis" id="kpis"></div>
+    <div class="panel scroll"><table id="test-table"></table></div>
+    <div class="two">
+      <div class="panel chart"><h2>Training the policy (REINFORCE)</h2><p class="note">Validation reward per email, 9-epoch average, 3 seeds.</p><div id="curve"></div><div class="keys" id="curve-keys"></div></div>
+      <div class="panel limit" id="limit"></div>
+    </div>
+    <p class="note" id="test-note"></p>
+  </section>
+
+  <section>
+    <h2>Indian scenario set: 34 hand-written emails</h2>
+    <p class="sub">One bar per agent. Each bar is the whole inbox, split by how the decision turned out.</p>
+    <p class="note" id="dataset-note"></p>
+    <div class="panel agents" id="agents"><div class="empty">Running the agents…</div></div>
+    <div class="legend" id="legend"></div>
+    <div class="panel scroll"><table id="metrics"></table></div>
+  </section>
+
+  <section>
+    <h2>Inbox walkthrough</h2>
+    <p class="sub">Open an email to see what the agent checked, what each check cost, and its incident report.</p>
+    <div class="controls">
+      <div class="tabs" id="tabs" role="group" aria-label="Agent"></div>
+      <label class="check"><input type="checkbox" id="only-problems"> Only mistakes and escalations</label>
+    </div>
+    <div class="panel inbox" id="inbox"></div>
+  </section>
+</main>
+<div id="tip" role="tooltip"></div>
+
+<script>
+const OUTCOMES = [
+  { key: "correct",        metric: "correct",         icon: "✓", label: "Correct" },
+  { key: "escalated",      metric: "escalated",       icon: "↗", label: "Sent to a human" },
+  { key: "false_positive", metric: "false_positives", icon: "!", label: "Real email blocked" },
+  { key: "missed_threat",  metric: "missed_threats",  icon: "✕", label: "Threat missed" },
+];
+const METRIC_ROWS = [
+  ["Correct decisions", m => `${m.correct} of ${m.emails}`],
+  ["Accuracy", m => Math.round(m.accuracy * 100) + "%"],
+  ["Real emails blocked", m => m.false_positives],
+  ["Threats missed", m => m.missed_threats],
+  ["… of which phishing", m => m.missed_phishing],
+  ["Sent to a human", m => m.escalated],
+  ["Tool calls per email", m => m.avg_tool_calls.toFixed(2)],
+  ["Total reward", m => m.total_reward.toFixed(2)],
+  ["Score (0 to 1)", m => m.score.toFixed(2)],
+];
+const DECISION_TEXT = { quarantine: "quarantined", allow: "allowed", escalate: "escalated" };
+
+const runs = {};          // agent kind -> full run, fetched on demand
+let currentKind = null;
+
+// Every piece of email text goes through textContent, never innerHTML.
+function el(tag, cls, text) {
+  const node = document.createElement(tag);
+  if (cls) node.className = cls;
+  if (text !== undefined) node.textContent = text;
+  return node;
+}
+const signed = n => (n > 0 ? "+" : n < 0 ? "−" : "") + Math.abs(n).toFixed(2);
+async function getJSON(url) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`${url} returned ${res.status}`);
+  return res.json();
+}
+
+const tip = document.getElementById("tip");
+function attachTip(node, text) {
+  node.addEventListener("mousemove", e => {
+    tip.textContent = text;
+    tip.style.display = "block";
+    const x = Math.min(e.clientX + 12, window.innerWidth - tip.offsetWidth - 8);
+    tip.style.left = x + "px";
+    tip.style.top = (e.clientY + 14) + "px";
+  });
+  node.addEventListener("mouseleave", () => { tip.style.display = "none"; });
+}
+
+function renderComparison(agents) {
+  const box = document.getElementById("agents");
+  box.replaceChildren();
+  for (const a of agents) {
+    const m = a.metrics;
+    const row = el("div", "agent-row");
+
+    const name = el("div", "agent-name", a.agent);
+    name.append(el("small", "", `${m.avg_tool_calls.toFixed(2)} tool calls per email`));
+
+    const cell = el("div", "bar-cell");
+    const bar = el("div", "bar");
+    bar.setAttribute("role", "img");
+    const counts = el("div", "counts");
+    const parts = [];
+    for (const o of OUTCOMES) {
+      const n = m[o.metric];
+      parts.push(`${n} ${o.label.toLowerCase()}`);
+      const item = el("span");
+      item.append(el("span", "dot " + o.key), document.createTextNode(`${n} ${o.label.toLowerCase()}`));
+      counts.append(item);
+      if (!n) continue;
+      const seg = el("div", "seg " + o.key);
+      seg.style.flex = `${n} 1 0`;
+      attachTip(seg, `${o.label}: ${n} of ${m.emails} emails (${Math.round(100 * n / m.emails)}%)`);
+      bar.append(seg);
+    }
+    bar.setAttribute("aria-label", `${a.agent}: ${parts.join(", ")}`);
+    cell.append(bar, counts);
+
+    const score = el("div", "score");
+    score.append(el("b", "", m.score.toFixed(2)), el("small", "", "score"));
+    row.append(name, cell, score);
+    box.append(row);
+  }
+
+  const legend = document.getElementById("legend");
+  legend.replaceChildren(...OUTCOMES.map(o => {
+    const item = el("span");
+    item.append(el("span", "dot " + o.key), document.createTextNode(`${o.icon} ${o.label}`));
+    return item;
+  }));
+
+  const table = document.getElementById("metrics");
+  const head = el("tr");
+  head.append(el("th", "", "Metric"), ...agents.map(a => el("th", "", a.agent)));
+  const thead = el("thead"); thead.append(head);
+  const tbody = el("tbody");
+  for (const [label, read] of METRIC_ROWS) {
+    const tr = el("tr");
+    tr.append(el("td", "", label), ...agents.map(a => el("td", "", String(read(a.metrics)))));
+    tbody.append(tr);
+  }
+  table.replaceChildren(thead, tbody);
+
+  const total = agents[0].metrics.emails;
+  document.getElementById("dataset-note").textContent =
+    `${total} hand-written emails with fictional brands on reserved .example domains; domain-age lookups for them are reported as unavailable. A scenario set for English and Hinglish scams, not a benchmark.`;
+}
+
+function renderTabs(agents) {
+  const tabs = document.getElementById("tabs");
+  tabs.replaceChildren(...agents.map(a => {
+    const b = el("button", "", a.agent);
+    b.type = "button";
+    b.dataset.kind = a.kind;
+    b.addEventListener("click", () => showInbox(a.kind));
+    return b;
+  }));
+}
+
+function emailRow(e) {
+  const outcome = OUTCOMES.find(o => o.key === e.outcome);
+  const d = el("details");
+  const s = el("summary");
+  const main = el("div");
+  main.style.minWidth = "0";
+  main.append(el("div", "subject", e.subject || e.text),
+              el("div", "from", e.sender ? `${e.sender_name} <${e.sender}>` : "sender unknown"));
+
+  const verdict = el("div", "verdict");
+  const out = el("span", "outcome");
+  out.append(el("span", "dot " + e.outcome),
+             document.createTextNode(`${outcome.icon} ${DECISION_TEXT[e.decision]} · ${outcome.label.toLowerCase()}`));
+  verdict.append(el("span", "chip", "actually " + e.label), out,
+                 el("span", "", `${e.tool_calls} check${e.tool_calls === 1 ? "" : "s"}`),
+                 el("span", "reward", signed(e.reward)));
+  s.append(el("span", "id", e.id), main, verdict);
+
+  const body = el("div", "body");
+  body.append(el("p", "", e.text));
+  const steps = el("ol", "steps");
+  for (const st of e.steps) {
+    const li = el("li");
+    li.append(el("code", "", st.action));
+    if (st.kind === "investigate") {
+      const risk = st.risk === null ? "" : ` (risk ${st.risk.toFixed(2)})`;
+      li.append(document.createTextNode(` — ${st.finding}${risk} `));
+    } else if (st.kind === "decision") {
+      li.append(document.createTextNode(e.reason ? ` — ${e.reason} ` : " "));
+    } else {
+      li.append(document.createTextNode(` — ${st.finding} `));
+    }
+    li.append(el("span", "cost", signed(st.reward)));
+    steps.append(li);
+  }
+  body.append(steps, el("pre", "", e.report));
+  d.append(s, body);
+  return d;
+}
+
+async function showInbox(kind) {
+  currentKind = kind;
+  for (const b of document.querySelectorAll("#tabs button")) {
+    b.setAttribute("aria-pressed", String(b.dataset.kind === kind));
+  }
+  const inbox = document.getElementById("inbox");
+  if (!runs[kind]) {
+    inbox.replaceChildren(el("div", "empty", "Running the agent…"));
+    try { runs[kind] = await getJSON("/run?agent=" + encodeURIComponent(kind)); }
+    catch (err) { inbox.replaceChildren(el("div", "error", "Could not load this run: " + err.message)); return; }
+    if (currentKind !== kind) return;
+  }
+  const onlyProblems = document.getElementById("only-problems").checked;
+  const emails = runs[kind].emails.filter(e => !onlyProblems || e.outcome !== "correct");
+  inbox.replaceChildren(...(emails.length
+    ? emails.map(emailRow)
+    : [el("div", "empty", "Nothing to show: every email was handled correctly.")]));
+}
+
+
+const pct = v => Math.round(v * 100) + "%";
+function renderTest(r) {
+  if (!r.test) { document.getElementById("kpis").textContent = "Run python scripts/evaluate.py to fill this section."; return; }
+  const A = r.test.agents;
+  const names = Object.keys(A);
+  const kw = A["keyword baseline"].metrics, rules = A["investigator"].metrics;
+  const pgName = names.find(n => n.includes("seed0")) || names.find(n => n.startsWith("policy"));
+  const pg = A[pgName].metrics;
+  const kpis = [
+    ["F1 score", pg.f1.toFixed(2), `keyword ${kw.f1.toFixed(2)} · rules ${rules.f1.toFixed(2)}`],
+    ["Phishing delivered", pct(pg.phishing_miss_rate), `keyword ${pct(kw.phishing_miss_rate)} · rules ${pct(rules.phishing_miss_rate)}`],
+    ["Checks per email", pg.avg_tool_calls.toFixed(2), `rules ${rules.avg_tool_calls.toFixed(2)}`],
+    ["Reward per email", signed(pg.avg_reward), `keyword ${signed(kw.avg_reward)} · rules ${signed(rules.avg_reward)}`],
+  ];
+  document.getElementById("kpis").replaceChildren(...kpis.map(([l, b, c]) => {
+    const d = el("div", "panel kpi"); d.append(el("div", "lab", l), el("div", "big", b), el("div", "cmp", c)); return d;
+  }));
+  const rows = [["Precision", "precision", v => v.toFixed(3)], ["Recall", "recall", v => v.toFixed(3)],
+    ["F1", "f1", v => v.toFixed(3)], ["False-positive rate", "false_positive_rate", pct],
+    ["Phishing delivered", "phishing_miss_rate", pct], ["Sent to a person", "escalation_rate", pct],
+    ["Checks per email", "avg_tool_calls", v => v.toFixed(2)], ["Reward per email", "avg_reward", signed]];
+  const cols = [["Keyword", kw], ["Rules", rules], ["Trained (seed 0)", pg]];
+  const mean = r.test.policy_gradient_mean;
+  const table = document.getElementById("test-table");
+  const head = el("tr"); head.append(el("th", "", "Metric"), ...cols.map(c => el("th", "", c[0])));
+  if (mean) head.append(el("th", "", "Trained, mean of 3 seeds"));
+  const thead = el("thead"); thead.append(head);
+  const tbody = el("tbody");
+  for (const [label, key, f] of rows) {
+    const tr = el("tr"); tr.append(el("td", "", label));
+    cols.forEach((c, i) => tr.append(el("td", i === 2 ? "hi" : "", f(c[1][key]))));
+    if (mean) tr.append(el("td", "", `${f(mean[key].mean)} ± ${key.includes("rate") ? pct(mean[key].std) : mean[key].std.toFixed(3)}`));
+    tbody.append(tr);
+  }
+  table.replaceChildren(thead, tbody);
+  document.getElementById("test-note").textContent =
+    `Threat-intel mode for this run: ${r.test.intel_mode} (live lookups were not reachable when these numbers were made). Precision, recall and FPR count automatic decisions only; escalated emails go to a person.`;
+  renderCurve(r.curves);
+  renderLimit(pg, rules, r.fp_sweep);
+}
+function renderCurve(c) {
+  const box = document.getElementById("curve");
+  if (!c) { box.textContent = "No training curves saved."; return; }
+  const NS = "http://www.w3.org/2000/svg", W = 560, H = 230, X0 = 34, Y0 = 10, Y1 = 200;
+  const svg = document.createElementNS(NS, "svg");
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  svg.setAttribute("role", "img");
+  svg.setAttribute("aria-label", "Validation reward per email over training epochs for three seeds, with the rule agent as a dashed reference");
+  const y = v => Y1 - (Y1 - Y0) * v / 0.5;
+  const add = (tag, attrs) => { const n = document.createElementNS(NS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); svg.append(n); return n; };
+  for (const g of [0, 0.1, 0.2, 0.3, 0.4, 0.5]) {
+    add("line", { x1: X0, x2: W - 6, y1: y(g), y2: y(g), stroke: "currentColor", "stroke-opacity": g === 0 ? 0.35 : 0.1 });
+    const t = add("text", { x: X0 - 6, y: y(g) + 4, "text-anchor": "end", "font-size": 11, fill: "currentColor", "fill-opacity": 0.6 }); t.textContent = g.toFixed(1);
+  }
+  const seeds = Object.entries(c.seeds);
+  const rulesV = seeds.reduce((a, [, s]) => a + s.rules_val_avg_reward, 0) / seeds.length;
+  add("line", { x1: X0, x2: W - 6, y1: y(rulesV), y2: y(rulesV), stroke: "var(--serious)", "stroke-width": 2, "stroke-dasharray": "7 5" });
+  add("line", { x1: X0, x2: W - 6, y1: y(0.3), y2: y(0.3), stroke: "var(--muted)", "stroke-width": 1.5, "stroke-dasharray": "4 4" });
+  seeds.forEach(([name, s], i) => {
+    const v = s.val_avg_reward, sm = v.map((_, j) => { const w = v.slice(Math.max(0, j - 8), j + 1); return w.reduce((a, b) => a + b, 0) / w.length; });
+    const pts = sm.map((val, j) => `${(X0 + (W - 6 - X0) * j / (sm.length - 1)).toFixed(1)},${y(Math.max(0, val)).toFixed(1)}`).join(" ");
+    add("polyline", { points: pts, fill: "none", stroke: i === 0 ? "var(--accent)" : "var(--muted)", "stroke-width": i === 0 ? 2.5 : 1.5, "stroke-linejoin": "round" });
+  });
+  const tx = add("text", { x: W - 6, y: H - 6, "text-anchor": "end", "font-size": 11, fill: "currentColor", "fill-opacity": 0.6 });
+  tx.textContent = `${seeds[0][1].val_avg_reward.length} epochs`;
+  box.replaceChildren(svg);
+  const keys = [["var(--accent)", "trained, seed 0", ""], ["var(--muted)", "seeds 1, 2", ""],
+                ["var(--serious)", `rules ${rulesV.toFixed(2)}`, "dashed"], ["var(--muted)", "escalate everything 0.30", "dashed"]];
+  document.getElementById("curve-keys").replaceChildren(...keys.map(([col, label, dash]) => {
+    const s = el("span"); const sw = el("span", "swatch"); sw.style.borderTopColor = col; if (dash) sw.style.borderTopStyle = "dashed";
+    s.append(sw, document.createTextNode(label)); return s;
+  }));
+}
+function renderLimit(pg, rules, sweep) {
+  const box = document.getElementById("limit");
+  const step = (cls, tag, text) => { const d = el("div", "step-box " + cls); d.append(el("b", "", tag), document.createTextNode(text)); return d; };
+  const parts = [el("h2", "", "Current limitation → retraining"),
+    step("warn", "LIMITATION", `${pct(pg.false_positive_rate)} of genuine emails blocked (rules: ${pct(rules.false_positive_rate)}).`),
+    step("", "CAUSE", "The reward makes a missed phishing (−2) twice as costly as a blocked email (−1)."),
+    step("fix", "RETRAINING", "Raise the blocked-email cost and fine-tune: python scripts/train_pg.py --fp-cost 3 --init results/pg_seeds/seed0.npz")];
+  if (sweep && sweep.costs) {
+    const t = el("table"); const h = el("tr");
+    h.append(el("th", "", "Blocked-email cost"), el("th", "", "FPR"), el("th", "", "Sent to a person"), el("th", "", "F1"));
+    const th = el("thead"); th.append(h); const tb = el("tbody");
+    for (const key of ["fp1-esc0.3", "fp2-esc0.3", "fp3-esc0.3"]) {
+      const g = sweep.costs[key]; if (!g) continue;
+      const tr = el("tr");
+      tr.append(el("td", "", key.split("-")[0].slice(2) + "×"), el("td", "", pct(g.mean.false_positive_rate)),
+                el("td", "", pct(g.mean.escalation_rate)), el("td", "", g.mean.f1.toFixed(2)));
+      tb.append(tr);
+    }
+    t.append(th, tb);
+    const wrap = el("div", "scroll"); wrap.append(t);
+    parts.push(wrap, el("p", "note", "Mean of 3 seeds on the test set. Raising the cost cuts false positives, but the policy then sends far more email to a person; balancing both is Round 2 work."));
+  }
+  box.replaceChildren(...parts);
+}
+document.getElementById("only-problems").addEventListener("change", () => showInbox(currentKind));
+
+getJSON("/api/results").then(renderTest).catch(err => {
+  document.getElementById("kpis").textContent = "Could not load test results: " + err.message;
+});
+
+(async () => {
+  try {
+    const agents = await getJSON("/compare");
+    renderComparison(agents);
+    renderTabs(agents);
+    await showInbox(agents[agents.length - 1].kind === "llm" ? "llm" : "investigator");
+  } catch (err) {
+    document.getElementById("agents").replaceChildren(
+      el("div", "error", "Could not load results: " + err.message));
+  }
+})();
+</script>
+</body>
+</html>
