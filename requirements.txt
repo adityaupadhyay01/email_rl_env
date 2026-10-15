@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+supabase
+python-dotenv
+openai
+numpy
+requests
+dnspython
+dkimpy
+pyspf
+gymnasium

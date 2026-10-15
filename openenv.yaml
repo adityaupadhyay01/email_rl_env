@@ -1,0 +1,31 @@
+id: email_rl_env
+
+env:
+  name: email_rl
+  description: Email threat-triage RL environment. Investigate each email with tools, then quarantine, allow or escalate.
+
+entrypoint:
+  reset: /reset
+  step: /step
+
+actions:
+  type: discrete
+  values:
+    - check_content
+    - check_sender
+    - check_url
+    - quarantine
+    - allow
+    - escalate
+    # legacy aliases, still accepted
+    - spam
+    - not_spam
+
+observations:
+  type: dict   # email fields + evidence so far + steps_left; the label is never included
+
+# Gymnasium interface (one episode = one email, Discrete(6) actions, Box observation):
+gymnasium: env.gym_env:EmailTriageEnv
+
+rewards:
+  type: float

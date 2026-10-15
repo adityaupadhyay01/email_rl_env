@@ -1,0 +1,426 @@
+[
+  {
+    "id": "E01",
+    "sender_name": "TechNova HR",
+    "sender": "hr@technova.example",
+    "auth": "pass",
+    "subject": "Offer letter and joining details",
+    "text": "Hi Aditya, congratulations! Your offer letter is attached with this mail. Feel free to reach out to me if you have any questions about joining.",
+    "urls": [],
+    "label": "legit",
+    "category": "work"
+  },
+  {
+    "id": "E02",
+    "sender_name": "Riya Sharma",
+    "sender": "riya.sharma@technova.example",
+    "auth": "pass",
+    "subject": "Meeting at 5 PM",
+    "text": "Meeting at 5 PM in conference room B. Please bring the sprint report.",
+    "urls": [],
+    "label": "legit",
+    "category": "work"
+  },
+  {
+    "id": "E03",
+    "sender_name": "Bharat Bank",
+    "sender": "alerts@bharatbank.example",
+    "auth": "pass",
+    "subject": "Your September statement is ready",
+    "text": "Your account statement for September is ready. Log in to net banking to view it: https://netbanking.bharatbank.example/statements. Never share your OTP or password with anyone.",
+    "urls": [
+      "https://netbanking.bharatbank.example/statements"
+    ],
+    "label": "legit",
+    "category": "banking"
+  },
+  {
+    "id": "E04",
+    "sender_name": "QuickKart",
+    "sender": "offers@quickkart.example",
+    "auth": "pass",
+    "subject": "Diwali Sale is live",
+    "text": "Diwali Sale is live! Up to 50% discount on electronics and free delivery on your first order. Shop now: https://www.quickkart.example/diwali",
+    "urls": [
+      "https://www.quickkart.example/diwali"
+    ],
+    "label": "legit",
+    "category": "newsletter"
+  },
+  {
+    "id": "E05",
+    "sender_name": "PayZap",
+    "sender": "notify@payzap.example",
+    "auth": "pass",
+    "subject": "You received Rs 500",
+    "text": "You received Rs 500 from Rahul Verma. Your updated wallet balance is Rs 1,240.",
+    "urls": [],
+    "label": "legit",
+    "category": "payments"
+  },
+  {
+    "id": "E06",
+    "sender_name": "VidyutSeva",
+    "sender": "bills@vidyutseva.example",
+    "auth": "pass",
+    "subject": "Electricity bill for October",
+    "text": "Your electricity bill for October is Rs 1,830. Due date is 25 October. View and pay your bill here: https://pay.vidyutseva.example/bill",
+    "urls": [
+      "https://pay.vidyutseva.example/bill"
+    ],
+    "label": "legit",
+    "category": "utility"
+  },
+  {
+    "id": "E07",
+    "sender_name": "CourierGo",
+    "sender": "track@couriergo.example",
+    "auth": "pass",
+    "subject": "Your parcel is out for delivery",
+    "text": "Your parcel AWB 778123 is out for delivery today. Track it here: https://track.couriergo.example/AWB778123",
+    "urls": [
+      "https://track.couriergo.example/AWB778123"
+    ],
+    "label": "legit",
+    "category": "delivery"
+  },
+  {
+    "id": "E08",
+    "sender_name": "JobSetu",
+    "sender": "alerts@jobsetu.example",
+    "auth": "pass",
+    "subject": "3 new jobs matching your profile",
+    "text": "3 new jobs match your profile: Python Developer, ML Intern and Backend Engineer. See them on JobSetu: https://www.jobsetu.example/jobs",
+    "urls": [
+      "https://www.jobsetu.example/jobs"
+    ],
+    "label": "legit",
+    "category": "jobs"
+  },
+  {
+    "id": "E09",
+    "sender_name": "Prof. Anil Verma",
+    "sender": "anil.verma@citycollege.example",
+    "auth": "pass",
+    "subject": "Winter semester exam schedule",
+    "text": "Dear students, the winter semester exam schedule is attached. The lab viva will be held in the following week.",
+    "urls": [],
+    "label": "legit",
+    "category": "college"
+  },
+  {
+    "id": "E10",
+    "sender_name": "Karan Mehta",
+    "sender": "karan.mehta92@mailbox.example",
+    "auth": "pass",
+    "subject": "Trip ke photos",
+    "text": "Bhai trip ke saare photos drive pe daal diye hain, dekh lena: https://drive.cloudbox.example/f/manali-trip",
+    "urls": [
+      "https://drive.cloudbox.example/f/manali-trip"
+    ],
+    "label": "legit",
+    "category": "personal"
+  },
+  {
+    "id": "E11",
+    "sender_name": "StreamBox",
+    "sender": "billing@streambox.example",
+    "auth": "pass",
+    "subject": "Your subscription renews on 20 October",
+    "text": "Your StreamBox subscription renews on 20 October. Rs 499 will be charged to your saved card. Manage your plan: https://www.streambox.example/account",
+    "urls": [
+      "https://www.streambox.example/account"
+    ],
+    "label": "legit",
+    "category": "subscription"
+  },
+  {
+    "id": "E12",
+    "sender_name": "NoteNest",
+    "sender": "hello@notenest.example",
+    "auth": "pass",
+    "subject": "Welcome to the NoteNest beta",
+    "text": "Thanks for signing up for the NoteNest beta. Your workspace is ready, open it here: https://app.notenest.example/start",
+    "urls": [
+      "https://app.notenest.example/start"
+    ],
+    "label": "legit",
+    "category": "product"
+  },
+  {
+    "id": "E13",
+    "sender_name": "TaxSeva",
+    "sender": "noreply@taxseva.example",
+    "auth": "pass",
+    "subject": "Income tax refund processed",
+    "text": "Your income tax refund of Rs 4,250 has been credited to your bank account ending 1234. No action is required from your side.",
+    "urls": [],
+    "label": "legit",
+    "category": "government"
+  },
+  {
+    "id": "E14",
+    "sender_name": "TechNova IT Support",
+    "sender": "it-support@technova.example",
+    "auth": "pass",
+    "subject": "Password expiry reminder",
+    "text": "Your password expires in 5 days. Change it from the intranet portal: https://intranet.technova.example/password. IT will never ask for your password over email.",
+    "urls": [
+      "https://intranet.technova.example/password"
+    ],
+    "label": "legit",
+    "category": "work"
+  },
+  {
+    "id": "E15",
+    "sender_name": "Bharat Bank KYC",
+    "sender": "kyc-update@bharatbank-secure.example",
+    "auth": "fail",
+    "subject": "KYC update zaroori hai",
+    "text": "Aapka KYC expire ho gaya hai. Aapka account band ho jayega. Turant update karein: http://bharatbank-secure.example/kyc",
+    "urls": [
+      "http://bharatbank-secure.example/kyc"
+    ],
+    "label": "phishing",
+    "category": "kyc_scam"
+  },
+  {
+    "id": "E16",
+    "sender_name": "PayZap Support",
+    "sender": "refund@payzap-help.example",
+    "auth": "fail",
+    "subject": "Refund of Rs 2,499 pending",
+    "text": "You are eligible for a refund of Rs 2,499. Enter your UPI PIN on this page to receive the amount: http://payzap-help.example/claim",
+    "urls": [
+      "http://payzap-help.example/claim"
+    ],
+    "label": "phishing",
+    "category": "upi_scam"
+  },
+  {
+    "id": "E17",
+    "sender_name": "VidyutSeva",
+    "sender": "alert@vidyutsevaa-bill.example",
+    "auth": "none",
+    "subject": "Electricity disconnection notice",
+    "text": "Dear consumer, your electricity connection will be disconnected tonight at 9:30 PM because your last bill was not updated. Call our electricity officer immediately on the number given below.",
+    "urls": [],
+    "label": "phishing",
+    "category": "utility_scam"
+  },
+  {
+    "id": "E18",
+    "sender_name": "JobSetu Careers",
+    "sender": "hr.jobsetu@mailbox.example",
+    "auth": "pass",
+    "subject": "You are selected - Data Entry (Work from Home)",
+    "text": "Congratulations! You are selected for a Data Entry job, work from home, salary Rs 35,000 per month. Pay Rs 1,500 registration fee to confirm your seat: http://tiny.example/job77",
+    "urls": [
+      "http://tiny.example/job77"
+    ],
+    "label": "phishing",
+    "category": "job_scam"
+  },
+  {
+    "id": "E19",
+    "sender_name": "Mega Lucky Draw",
+    "sender": "winner@lucky-draw-india.example",
+    "auth": "none",
+    "subject": "You have won Rs 25,00,000",
+    "text": "You have won a lottery prize of Rs 25,00,000! Send a processing fee of Rs 5,000 today to claim your prize money.",
+    "urls": [],
+    "label": "phishing",
+    "category": "lottery_scam"
+  },
+  {
+    "id": "E20",
+    "sender_name": "CourierGo",
+    "sender": "delivery@couriergo-track.example",
+    "auth": "fail",
+    "subject": "Parcel held at customs",
+    "text": "Your parcel is held at customs. Pay Rs 49 to release it within 24 hours: http://couriergo-track.example/pay",
+    "urls": [
+      "http://couriergo-track.example/pay"
+    ],
+    "label": "phishing",
+    "category": "delivery_scam"
+  },
+  {
+    "id": "E21",
+    "sender_name": "Rajesh Gupta (CEO)",
+    "sender": "rajesh.gupta.ceo@mailbox.example",
+    "auth": "pass",
+    "subject": "Quick favour",
+    "text": "Are you at your desk? I am in a meeting and need you to buy 5 gift cards of Rs 10,000 each urgently. Keep this confidential, I will explain later.",
+    "urls": [],
+    "label": "phishing",
+    "category": "ceo_fraud"
+  },
+  {
+    "id": "E22",
+    "sender_name": "Riya Sharma",
+    "sender": "riya.sharma@technova.example",
+    "auth": "pass",
+    "subject": "Updated salary sheet",
+    "text": "Hi, please review the updated salary sheet before EOD: http://bit.example/sal-sheet",
+    "urls": [
+      "http://bit.example/sal-sheet"
+    ],
+    "label": "phishing",
+    "category": "compromised_account"
+  },
+  {
+    "id": "E23",
+    "sender_name": "StreamBox",
+    "sender": "billing@streambox-renew.example",
+    "auth": "fail",
+    "subject": "Payment failed",
+    "text": "Your payment failed. Update your card number and CVV within 24 hours to avoid suspension of your account: https://streambox-renew.example/update",
+    "urls": [
+      "https://streambox-renew.example/update"
+    ],
+    "label": "phishing",
+    "category": "billing_scam"
+  },
+  {
+    "id": "E24",
+    "sender_name": "TaxSeva Refund",
+    "sender": "refund@taxseva-gov.example",
+    "auth": "fail",
+    "subject": "Income tax refund approved",
+    "text": "Your income tax refund of Rs 15,480 is approved. Submit your bank details and PAN card number to receive it: http://taxseva-gov.example/refund",
+    "urls": [
+      "http://taxseva-gov.example/refund"
+    ],
+    "label": "phishing",
+    "category": "tax_scam"
+  },
+  {
+    "id": "E25",
+    "sender_name": "TeleConnect Care",
+    "sender": "care@teleconnect-kyc.example",
+    "auth": "none",
+    "subject": "SIM band hone wala hai",
+    "text": "Aapka SIM 24 ghante mein band ho jayega. KYC verify karne ke liye is link par click karein: http://tiny.example/sim-kyc",
+    "urls": [
+      "http://tiny.example/sim-kyc"
+    ],
+    "label": "phishing",
+    "category": "kyc_scam"
+  },
+  {
+    "id": "E26",
+    "sender_name": "Security Alert",
+    "sender": "security@account-alerts.example",
+    "auth": "none",
+    "subject": "Unusual sign-in detected",
+    "text": "Unusual sign-in detected on your account. Verify your password now to keep your account active: http://203.0.113.45/login",
+    "urls": [
+      "http://203.0.113.45/login"
+    ],
+    "label": "phishing",
+    "category": "credential_theft"
+  },
+  {
+    "id": "E27",
+    "sender_name": "QuickKart Rewards",
+    "sender": "rewards@quickkart-gifts.example",
+    "auth": "fail",
+    "subject": "Claim your free gift voucher",
+    "text": "Congratulations! Claim your free gift voucher worth Rs 5,000. Offer valid today only: http://quickkart-gifts.example/claim",
+    "urls": [
+      "http://quickkart-gifts.example/claim"
+    ],
+    "label": "phishing",
+    "category": "reward_scam"
+  },
+  {
+    "id": "E28",
+    "sender_name": "Dealz Blast",
+    "sender": "promo@dealz-blast.example",
+    "auth": "none",
+    "subject": "Win a free iPhone!!!",
+    "text": "Win a free iPhone!!! Click here to enter the contest: http://dealz-blast.example/iphone",
+    "urls": [
+      "http://dealz-blast.example/iphone"
+    ],
+    "label": "spam",
+    "category": "promotion"
+  },
+  {
+    "id": "E29",
+    "sender_name": "Herbal Slim",
+    "sender": "sales@herbal-slim.example",
+    "auth": "none",
+    "subject": "Lose 10 kg in 10 days",
+    "text": "Lose 10 kg in 10 days with our herbal capsules. 70% discount this week only, buy now: http://herbal-slim.example/order",
+    "urls": [
+      "http://herbal-slim.example/order"
+    ],
+    "label": "spam",
+    "category": "promotion"
+  },
+  {
+    "id": "E30",
+    "sender_name": "Easy Income",
+    "sender": "info@easy-income.example",
+    "auth": "none",
+    "subject": "Earn Rs 5000 daily from home",
+    "text": "Earn Rs 5000 daily from home. Limited seats, join our channel today: http://easy-income.example/join",
+    "urls": [
+      "http://easy-income.example/join"
+    ],
+    "label": "spam",
+    "category": "promotion"
+  },
+  {
+    "id": "E31",
+    "sender_name": "Instant Loanz",
+    "sender": "loans@instant-loanz.example",
+    "auth": "pass",
+    "subject": "Loan approved in 5 minutes",
+    "text": "Cheap personal loans approved in 5 minutes, no documents needed. Apply here: https://instant-loanz.example/apply",
+    "urls": [
+      "https://instant-loanz.example/apply"
+    ],
+    "label": "spam",
+    "category": "promotion"
+  },
+  {
+    "id": "E32",
+    "sender_name": "SEO Rank Boost",
+    "sender": "marketing@seo-rank-boost.example",
+    "auth": "none",
+    "subject": "Rank #1 on search",
+    "text": "We will rank your website #1 on search engines. Special offer for this week: http://seo-rank-boost.example/plans",
+    "urls": [
+      "http://seo-rank-boost.example/plans"
+    ],
+    "label": "spam",
+    "category": "promotion"
+  },
+  {
+    "id": "E33",
+    "sender_name": "Accounts Team",
+    "sender": "accounts@vendor-payments.example",
+    "auth": "pass",
+    "subject": "Change in our bank account",
+    "text": "Dear customer, please note that our company bank account has changed. Kindly process this month's invoice to the new account mentioned in the attached letter.",
+    "urls": [],
+    "label": "phishing",
+    "category": "invoice_fraud"
+  },
+  {
+    "id": "E34",
+    "sender_name": "Bharat Bank Credit Cards",
+    "sender": "cards@bharatbankcards.example",
+    "auth": "pass",
+    "subject": "Your credit card statement",
+    "text": "Your credit card statement is generated. Total amount due is Rs 12,430, payable by 5 November. View statement: https://bharatbankcards.example/statement",
+    "urls": [
+      "https://bharatbankcards.example/statement"
+    ],
+    "label": "legit",
+    "category": "banking"
+  }
+]

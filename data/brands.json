@@ -1,0 +1,313 @@
+{
+ "_note": "Reference list of official domains for brands that phishing commonly imitates. This is a static list used for look-alike detection, not threat intelligence. The 'scenario' brands are the fictional ones used in the hand-written demo inbox (reserved .example TLD).",
+ "brands": {
+  "PayPal": [
+   "paypal.com",
+   "paypal.me",
+   "paypal-communication.com"
+  ],
+  "Apple": [
+   "apple.com",
+   "icloud.com",
+   "me.com"
+  ],
+  "Microsoft": [
+   "microsoft.com",
+   "outlook.com",
+   "live.com",
+   "office.com",
+   "office365.com",
+   "microsoftonline.com",
+   "hotmail.com",
+   "sharepoint.com",
+   "onedrive.com",
+   "msn.com"
+  ],
+  "Google": [
+   "google.com",
+   "gmail.com",
+   "youtube.com",
+   "googlemail.com",
+   "google.co.in"
+  ],
+  "Amazon": [
+   "amazon.com",
+   "amazon.in",
+   "amazon.co.uk",
+   "amazonaws.com",
+   "aws.amazon.com"
+  ],
+  "Netflix": [
+   "netflix.com"
+  ],
+  "Facebook": [
+   "facebook.com",
+   "facebookmail.com",
+   "meta.com",
+   "fb.com"
+  ],
+  "Instagram": [
+   "instagram.com"
+  ],
+  "WhatsApp": [
+   "whatsapp.com"
+  ],
+  "LinkedIn": [
+   "linkedin.com"
+  ],
+  "DHL": [
+   "dhl.com",
+   "dhl.de"
+  ],
+  "FedEx": [
+   "fedex.com"
+  ],
+  "UPS": [
+   "ups.com"
+  ],
+  "USPS": [
+   "usps.com"
+  ],
+  "Wells Fargo": [
+   "wellsfargo.com"
+  ],
+  "Chase": [
+   "chase.com",
+   "jpmorganchase.com"
+  ],
+  "Bank of America": [
+   "bankofamerica.com",
+   "bofa.com"
+  ],
+  "SBI": [
+   "sbi.co.in",
+   "onlinesbi.sbi",
+   "onlinesbi.com",
+   "sbicard.com"
+  ],
+  "HDFC Bank": [
+   "hdfcbank.com",
+   "hdfcbank.net"
+  ],
+  "ICICI Bank": [
+   "icicibank.com"
+  ],
+  "Axis Bank": [
+   "axisbank.com"
+  ],
+  "Paytm": [
+   "paytm.com"
+  ],
+  "PhonePe": [
+   "phonepe.com"
+  ],
+  "IRCTC": [
+   "irctc.co.in"
+  ],
+  "Income Tax India": [
+   "incometax.gov.in",
+   "incometaxindia.gov.in"
+  ],
+  "DocuSign": [
+   "docusign.com",
+   "docusign.net"
+  ],
+  "Dropbox": [
+   "dropbox.com"
+  ],
+  "Adobe": [
+   "adobe.com"
+  ],
+  "Coinbase": [
+   "coinbase.com"
+  ],
+  "Binance": [
+   "binance.com"
+  ],
+  "MetaMask": [
+   "metamask.io"
+  ],
+  "Flipkart": [
+   "flipkart.com"
+  ],
+  "Airtel": [
+   "airtel.in",
+   "airtel.com"
+  ],
+  "Jio": [
+   "jio.com"
+  ],
+  "India Post": [
+   "indiapost.gov.in"
+  ],
+  "Steam": [
+   "steampowered.com",
+   "steamcommunity.com"
+  ],
+  "Norton": [
+   "norton.com",
+   "nortonlifelock.com"
+  ],
+  "McAfee": [
+   "mcafee.com"
+  ],
+  "American Express": [
+   "americanexpress.com",
+   "aexp.com"
+  ],
+  "Walmart": [
+   "walmart.com"
+  ],
+  "Costco": [
+   "costco.com"
+  ],
+  "Booking.com": [
+   "booking.com"
+  ],
+  "Zoom": [
+   "zoom.us"
+  ],
+  "Mercado Livre": [
+   "mercadolivre.com.br",
+   "mercadolibre.com",
+   "mercadolivre.com",
+   "mercadopago.com"
+  ],
+  "Itau": [
+   "itau.com.br"
+  ],
+  "Bradesco": [
+   "bradesco.com.br"
+  ],
+  "Caixa": [
+   "caixa.gov.br"
+  ],
+  "Correios": [
+   "correios.com.br"
+  ],
+  "Santander": [
+   "santander.com",
+   "santander.com.br",
+   "santander.co.uk"
+  ],
+  "Rabobank": [
+   "rabobank.nl",
+   "rabobank.com"
+  ],
+  "Sparkasse": [
+   "sparkasse.de"
+  ],
+  "Trust Wallet": [
+   "trustwallet.com"
+  ],
+  "Ledger": [
+   "ledger.com"
+  ],
+  "Spotify": [
+   "spotify.com"
+  ],
+  "Disney": [
+   "disneyplus.com",
+   "disney.com"
+  ],
+  "Telegram": [
+   "telegram.org"
+  ],
+  "Yahoo": [
+   "yahoo.com"
+  ]
+ },
+ "scenario_brands": {
+  "Bharat Bank": [
+   "bharatbank.example"
+  ],
+  "PayZap": [
+   "payzap.example"
+  ],
+  "VidyutSeva": [
+   "vidyutseva.example"
+  ],
+  "QuickKart": [
+   "quickkart.example"
+  ],
+  "TechNova": [
+   "technova.example"
+  ],
+  "JobSetu": [
+   "jobsetu.example"
+  ],
+  "CourierGo": [
+   "couriergo.example"
+  ],
+  "StreamBox": [
+   "streambox.example"
+  ],
+  "TaxSeva": [
+   "taxseva.example"
+  ],
+  "TeleConnect": [
+   "teleconnect.example"
+  ]
+ },
+ "freemail": [
+  "gmail.com",
+  "googlemail.com",
+  "yahoo.com",
+  "yahoo.co.in",
+  "outlook.com",
+  "hotmail.com",
+  "live.com",
+  "msn.com",
+  "aol.com",
+  "icloud.com",
+  "me.com",
+  "proton.me",
+  "protonmail.com",
+  "rediffmail.com",
+  "zoho.com",
+  "zohomail.in",
+  "mail.com",
+  "gmx.com",
+  "gmx.net",
+  "gmx.de",
+  "yandex.com",
+  "yandex.ru",
+  "mail.ru",
+  "qq.com",
+  "163.com",
+  "126.com",
+  "web.de",
+  "libero.it",
+  "outlook.in",
+  "mailbox.example"
+ ],
+ "abused_tlds": [
+  "zip",
+  "mov",
+  "top",
+  "xyz",
+  "click",
+  "icu",
+  "rest",
+  "cyou",
+  "sbs",
+  "cfd",
+  "buzz",
+  "monster",
+  "quest",
+  "lol",
+  "bond",
+  "shop",
+  "online",
+  "site",
+  "live",
+  "club",
+  "work",
+  "support",
+  "gq",
+  "tk",
+  "ml",
+  "cf",
+  "ga"
+ ]
+}

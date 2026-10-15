@@ -1,0 +1,41 @@
+[project]
+name = "email-rl-env"
+version = "0.3.0"
+description = "Email threat-triage RL environment with tool-using agents"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "supabase",
+    "python-dotenv",
+    "openai",
+    "numpy",
+    "requests",
+    "dnspython",
+    "dkimpy",
+    "pyspf",
+    "gymnasium",
+    "openenv-core>=0.2.0"
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "httpx"]
+
+[project.scripts]
+server = "server.app:main"
+
+[tool.setuptools]
+packages = ["agent", "db", "env", "evaluator", "scripts", "server", "utils"]
+py-modules = ["app", "baseline_agent", "email_env", "inference"]
+
+[tool.setuptools.package-data]
+server = ["dashboard.html", "demo.html"]
+agent = ["pg_policy.npz"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
