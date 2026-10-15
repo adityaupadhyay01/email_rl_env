@@ -1,0 +1,14 @@
+Authentication-Results: mx.demo-inbox.local; spf=pass
+ smtp.mailfrom=mailbox.example; dkim=pass header.d=mailbox.example; dmarc=pass
+ header.from=mailbox.example
+From: "Rajesh Gupta (CEO)" <rajesh.gupta.ceo@mailbox.example>
+To: aditya@demo-inbox.local
+Subject: Quick favour
+Date: Wed, 14 Oct 2026 11:24:00 +0530
+X-Demo-Scenario: E21 (hand-written, label phishing)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Are you at your desk? I am in a meeting and need you to buy 5 gift cards of R=
+s 10,000 each urgently. Keep this confidential, I will explain later.
