@@ -1,24 +1,15 @@
 FROM python:3.11-slim
 
-# Hugging Face Spaces runs the container as user 1000 and only that user's
-# home directory is writable, so the app lives there.
-RUN useradd -m -u 1000 user
-USER user
-ENV HOME=/home/user \
-    PATH=/home/user/.local/bin:$PATH \
-    PYTHONUNBUFFERED=1 \
-    INTEL_MODE=live
-WORKDIR $HOME/app
+WORKDIR /app
 
-# Dependencies first, so Docker can cache this layer
-COPY --chown=user requirements.txt .
-RUN pip install --no-cache-dir --user -r requirements.txt
+# Install dependencies first so Docker can cache this layer
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-COPY --chown=user . .
+COPY . .
 
-# Hugging Face Spaces port
+# HuggingFace Spaces port
 EXPOSE 7860
 
-# Dashboard at /, live demo at /demo, API at /reset /step /run /compare /api/*.
-# For the plain log run: docker run email-env python inference.py --compare
+# Dashboard + API. For the plain log run use: docker run email-env python inference.py
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "7860"]

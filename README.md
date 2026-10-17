@@ -1,14 +1,3 @@
----
-title: Email Threat Triage Agent
-emoji: 🛡️
-colorFrom: blue
-colorTo: gray
-sdk: docker
-app_port: 7860
-pinned: false
-short_description: RL agent that investigates emails, then blocks or escalates
----
-
 # Email RL Environment: Autonomous Email Threat Triage
 
 A reinforcement-learning environment where an agent works through an inbox the way a
@@ -218,34 +207,6 @@ git clone https://github.com/rf-peixoto/phishing_pot
 npm pack @stdlib/datasets-spam-assassin && tar xzf stdlib-datasets-spam-assassin-*.tgz
 python scripts/build_public_dataset.py phishing_pot package/data
 ```
-
-## Deploy to Hugging Face Spaces
-
-The repo is a ready Docker Space: the YAML block at the top of this README tells Hugging
-Face to build the `Dockerfile` and serve port 7860. On Spaces the network is open, so the
-live lookups (RDAP, OpenPhish, DNS) actually run.
-
-1. Create a Space at https://huggingface.co/new-space: pick a name, **SDK: Docker**,
-   template **Blank**, hardware **CPU basic (free)**.
-2. Upload the code (from the project folder):
-
-   ```bash
-   pip install -U huggingface_hub
-   hf auth login                       # paste a token with "write" access
-   hf upload YOUR_USERNAME/YOUR_SPACE . --repo-type=space \
-       --exclude ".env" ".git/*" "data/demo_inbox/live/*" "__pycache__/*"
-   ```
-
-   `hf upload` stores the binary files (`.npz` weights, `.png` screenshots) the way the Hub
-   requires; a plain `git push` of them is rejected.
-3. Optional, in the Space's **Settings → Variables and secrets**: add the secret `HF_TOKEN`
-   to enable the LLM agent, and `GOOGLE_SAFE_BROWSING_KEY` / `URLHAUS_AUTH_KEY` for more URL
-   reputation sources. Never upload `.env`.
-4. Wait for the build (a few minutes; logs are under the **Logs** tab). The dashboard opens at
-   `https://YOUR_USERNAME-YOUR_SPACE.hf.space/`, the live demo at `/demo`.
-
-The free CPU Space sleeps when idle and its disk resets on restart: the demo inbox and the
-lookup cache start fresh each time, which is fine for a demo.
 
 ## API
 
