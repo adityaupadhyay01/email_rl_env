@@ -1,0 +1,358 @@
+{
+ "split": "test",
+ "emails": 783,
+ "costs": {
+  "fp1-esc0.3": {
+   "seeds": [
+    {
+     "weights": "results/pg_seeds/seed0.npz",
+     "false_positive_rate": 0.223,
+     "phishing_miss_rate": 0.127,
+     "escalation_rate": 0.12,
+     "precision": 0.811,
+     "recall": 0.771,
+     "f1": 0.791,
+     "avg_tool_calls": 1.36,
+     "avg_reward": 0.46
+    },
+    {
+     "weights": "results/pg_seeds/seed1.npz",
+     "false_positive_rate": 0.206,
+     "phishing_miss_rate": 0.145,
+     "escalation_rate": 0.128,
+     "precision": 0.82,
+     "recall": 0.758,
+     "f1": 0.788,
+     "avg_tool_calls": 1.36,
+     "avg_reward": 0.451
+    },
+    {
+     "weights": "results/pg_seeds/seed2.npz",
+     "false_positive_rate": 0.206,
+     "phishing_miss_rate": 0.0,
+     "escalation_rate": 0.536,
+     "precision": 0.802,
+     "recall": 0.672,
+     "f1": 0.731,
+     "avg_tool_calls": 1.0,
+     "avg_reward": 0.391
+    }
+   ],
+   "mean": {
+    "false_positive_rate": 0.212,
+    "phishing_miss_rate": 0.091,
+    "escalation_rate": 0.261,
+    "precision": 0.811,
+    "recall": 0.734,
+    "f1": 0.77,
+    "avg_tool_calls": 1.24,
+    "avg_reward": 0.434
+   },
+   "std": {
+    "false_positive_rate": 0.008,
+    "phishing_miss_rate": 0.065,
+    "escalation_rate": 0.194,
+    "precision": 0.007,
+    "recall": 0.044,
+    "f1": 0.028,
+    "avg_tool_calls": 0.17,
+    "avg_reward": 0.031
+   }
+  },
+  "fp2-esc0.1": {
+   "seeds": [
+    {
+     "weights": "results/pg_fp/fp2-esc0.1_seed0.npz",
+     "false_positive_rate": 0.223,
+     "phishing_miss_rate": 0.127,
+     "escalation_rate": 0.121,
+     "precision": 0.81,
+     "recall": 0.769,
+     "f1": 0.789,
+     "avg_tool_calls": 1.36,
+     "avg_reward": 0.459
+    },
+    {
+     "weights": "results/pg_fp/fp2-esc0.1_seed1.npz",
+     "false_positive_rate": 0.206,
+     "phishing_miss_rate": 0.194,
+     "escalation_rate": 0.034,
+     "precision": 0.822,
+     "recall": 0.767,
+     "f1": 0.793,
+     "avg_tool_calls": 1.45,
+     "avg_reward": 0.426
+    },
+    {
+     "weights": "results/pg_fp/fp2-esc0.1_seed2.npz",
+     "false_positive_rate": 0.06,
+     "phishing_miss_rate": 0.0,
+     "escalation_rate": 0.808,
+     "precision": 0.86,
+     "recall": 0.298,
+     "f1": 0.443,
+     "avg_tool_calls": 1.0,
+     "avg_reward": 0.33
+    }
+   ],
+   "mean": {
+    "false_positive_rate": 0.163,
+    "phishing_miss_rate": 0.107,
+    "escalation_rate": 0.321,
+    "precision": 0.831,
+    "recall": 0.611,
+    "f1": 0.675,
+    "avg_tool_calls": 1.27,
+    "avg_reward": 0.405
+   },
+   "std": {
+    "false_positive_rate": 0.073,
+    "phishing_miss_rate": 0.08,
+    "escalation_rate": 0.346,
+    "precision": 0.021,
+    "recall": 0.222,
+    "f1": 0.164,
+    "avg_tool_calls": 0.194,
+    "avg_reward": 0.055
+   }
+  },
+  "fp2-esc0": {
+   "seeds": [
+    {
+     "weights": "results/pg_fp/fp2-esc0_seed0.npz",
+     "false_positive_rate": 0.249,
+     "phishing_miss_rate": 0.166,
+     "escalation_rate": 0.026,
+     "precision": 0.797,
+     "recall": 0.79,
+     "f1": 0.794,
+     "avg_tool_calls": 1.5,
+     "avg_reward": 0.42
+    },
+    {
+     "weights": "results/pg_fp/fp2-esc0_seed1.npz",
+     "false_positive_rate": 0.206,
+     "phishing_miss_rate": 0.194,
+     "escalation_rate": 0.024,
+     "precision": 0.822,
+     "recall": 0.769,
+     "f1": 0.795,
+     "avg_tool_calls": 1.46,
+     "avg_reward": 0.429
+    },
+    {
+     "weights": "results/pg_fp/fp2-esc0_seed2.npz",
+     "false_positive_rate": 0.269,
+     "phishing_miss_rate": 0.166,
+     "escalation_rate": 0.0,
+     "precision": 0.791,
+     "recall": 0.82,
+     "f1": 0.805,
+     "avg_tool_calls": 1.47,
+     "avg_reward": 0.422
+    }
+   ],
+   "mean": {
+    "false_positive_rate": 0.241,
+    "phishing_miss_rate": 0.175,
+    "escalation_rate": 0.017,
+    "precision": 0.803,
+    "recall": 0.793,
+    "f1": 0.798,
+    "avg_tool_calls": 1.477,
+    "avg_reward": 0.424
+   },
+   "std": {
+    "false_positive_rate": 0.026,
+    "phishing_miss_rate": 0.013,
+    "escalation_rate": 0.012,
+    "precision": 0.013,
+    "recall": 0.021,
+    "f1": 0.005,
+    "avg_tool_calls": 0.017,
+    "avg_reward": 0.004
+   }
+  },
+  "fp2-esc0.3": {
+   "seeds": [
+    {
+     "weights": "results/pg_fp/fp2_seed0.npz",
+     "false_positive_rate": 0.154,
+     "phishing_miss_rate": 0.127,
+     "escalation_rate": 0.229,
+     "precision": 0.835,
+     "recall": 0.63,
+     "f1": 0.718,
+     "avg_tool_calls": 1.36,
+     "avg_reward": 0.446
+    },
+    {
+     "weights": "results/pg_fp/fp2_seed1.npz",
+     "false_positive_rate": 0.063,
+     "phishing_miss_rate": 0.127,
+     "escalation_rate": 0.418,
+     "precision": 0.877,
+     "recall": 0.363,
+     "f1": 0.513,
+     "avg_tool_calls": 1.33,
+     "avg_reward": 0.397
+    },
+    {
+     "weights": "results/pg_fp/fp2_seed2.npz",
+     "false_positive_rate": 0.051,
+     "phishing_miss_rate": 0.0,
+     "escalation_rate": 0.842,
+     "precision": 0.855,
+     "recall": 0.245,
+     "f1": 0.381,
+     "avg_tool_calls": 1.0,
+     "avg_reward": 0.315
+    }
+   ],
+   "mean": {
+    "false_positive_rate": 0.089,
+    "phishing_miss_rate": 0.085,
+    "escalation_rate": 0.496,
+    "precision": 0.856,
+    "recall": 0.413,
+    "f1": 0.537,
+    "avg_tool_calls": 1.23,
+    "avg_reward": 0.386
+   },
+   "std": {
+    "false_positive_rate": 0.046,
+    "phishing_miss_rate": 0.06,
+    "escalation_rate": 0.256,
+    "precision": 0.017,
+    "recall": 0.161,
+    "f1": 0.139,
+    "avg_tool_calls": 0.163,
+    "avg_reward": 0.054
+   }
+  },
+  "fp3-esc0": {
+   "seeds": [
+    {
+     "weights": "results/pg_fp/fp3-esc0_seed0.npz",
+     "false_positive_rate": 0.154,
+     "phishing_miss_rate": 0.127,
+     "escalation_rate": 0.229,
+     "precision": 0.835,
+     "recall": 0.63,
+     "f1": 0.718,
+     "avg_tool_calls": 1.36,
+     "avg_reward": 0.446
+    },
+    {
+     "weights": "results/pg_fp/fp3-esc0_seed1.npz",
+     "false_positive_rate": 0.083,
+     "phishing_miss_rate": 0.166,
+     "escalation_rate": 0.24,
+     "precision": 0.889,
+     "recall": 0.536,
+     "f1": 0.669,
+     "avg_tool_calls": 1.65,
+     "avg_reward": 0.393
+    },
+    {
+     "weights": "results/pg_fp/fp3-esc0_seed2.npz",
+     "false_positive_rate": 0.054,
+     "phishing_miss_rate": 0.0,
+     "escalation_rate": 0.755,
+     "precision": 0.901,
+     "recall": 0.4,
+     "f1": 0.554,
+     "avg_tool_calls": 1.4,
+     "avg_reward": 0.333
+    }
+   ],
+   "mean": {
+    "false_positive_rate": 0.097,
+    "phishing_miss_rate": 0.098,
+    "escalation_rate": 0.408,
+    "precision": 0.875,
+    "recall": 0.522,
+    "f1": 0.647,
+    "avg_tool_calls": 1.47,
+    "avg_reward": 0.391
+   },
+   "std": {
+    "false_positive_rate": 0.042,
+    "phishing_miss_rate": 0.071,
+    "escalation_rate": 0.245,
+    "precision": 0.029,
+    "recall": 0.094,
+    "f1": 0.069,
+    "avg_tool_calls": 0.128,
+    "avg_reward": 0.046
+   }
+  },
+  "fp3-esc0.3": {
+   "seeds": [
+    {
+     "weights": "results/pg_fp/fp3_seed0.npz",
+     "false_positive_rate": 0.069,
+     "phishing_miss_rate": 0.127,
+     "escalation_rate": 0.425,
+     "precision": 0.861,
+     "recall": 0.344,
+     "f1": 0.492,
+     "avg_tool_calls": 1.41,
+     "avg_reward": 0.38
+    },
+    {
+     "weights": "results/pg_fp/fp3_seed1.npz",
+     "false_positive_rate": 0.06,
+     "phishing_miss_rate": 0.0,
+     "escalation_rate": 0.819,
+     "precision": 0.852,
+     "recall": 0.279,
+     "f1": 0.421,
+     "avg_tool_calls": 0.97,
+     "avg_reward": 0.325
+    },
+    {
+     "weights": "results/pg_fp/fp3_seed2.npz",
+     "false_positive_rate": 0.0,
+     "phishing_miss_rate": 0.0,
+     "escalation_rate": 0.99,
+     "precision": 1.0,
+     "recall": 0.018,
+     "f1": 0.036,
+     "avg_tool_calls": 0.03,
+     "avg_reward": 0.305
+    }
+   ],
+   "mean": {
+    "false_positive_rate": 0.043,
+    "phishing_miss_rate": 0.042,
+    "escalation_rate": 0.745,
+    "precision": 0.904,
+    "recall": 0.214,
+    "f1": 0.316,
+    "avg_tool_calls": 0.803,
+    "avg_reward": 0.337
+   },
+   "std": {
+    "false_positive_rate": 0.031,
+    "phishing_miss_rate": 0.06,
+    "escalation_rate": 0.237,
+    "precision": 0.068,
+    "recall": 0.141,
+    "f1": 0.2,
+    "avg_tool_calls": 0.576,
+    "avg_reward": 0.032
+   }
+  }
+ },
+ "rules": {
+  "false_positive_rate": 0.02,
+  "phishing_miss_rate": 0.124,
+  "escalation_rate": 0.382,
+  "precision": 0.965,
+  "recall": 0.443,
+  "f1": 0.608,
+  "avg_tool_calls": 2.75,
+  "avg_reward": 0.268
+ }
+}

@@ -1,0 +1,1648 @@
+{
+ "split": "test",
+ "emails": 783,
+ "intel_mode": "cache",
+ "labels": {
+  "phishing": 283,
+  "spam": 150,
+  "legit": 350
+ },
+ "agents": {
+  "keyword baseline": {
+   "metrics": {
+    "emails": 783,
+    "correct": 334,
+    "accuracy": 0.427,
+    "false_positives": 169,
+    "missed_threats": 280,
+    "missed_phishing": 225,
+    "escalated": 0,
+    "tool_calls": 0,
+    "avg_tool_calls": 0.0,
+    "total_reward": -312.5,
+    "avg_reward": -0.399,
+    "score": 0.3,
+    "precision": 0.475,
+    "recall": 0.353,
+    "f1": 0.405,
+    "false_positive_rate": 0.483,
+    "phishing_miss_rate": 0.795,
+    "threats_quarantined_or_escalated": 0.353,
+    "escalation_rate": 0.0
+   },
+   "confusion": {
+    "legit->allow": 181,
+    "legit->quarantine": 169,
+    "phishing->allow": 225,
+    "phishing->quarantine": 58,
+    "spam->allow": 55,
+    "spam->quarantine": 95
+   },
+   "errors": [
+    {
+     "id": "P0435",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Je energierekening was onterecht te hoog – claim tot €10.000 terug",
+     "reason": ""
+    },
+    {
+     "id": "H0301",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "RE: [SAtalk] paulgraham.com article",
+     "reason": ""
+    },
+    {
+     "id": "P0103",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Jusqu ’à 70 % des frais pris en charge",
+     "reason": ""
+    },
+    {
+     "id": "H0375",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Play by Play: Effective Memory Management",
+     "reason": ""
+    },
+    {
+     "id": "P0138",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Struggling with Foot Pain? Grounded Footwear Eases Neuropathy ��� 50% Off! ��������#us-71433",
+     "reason": ""
+    },
+    {
+     "id": "P0366",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Mercadoria Retida.",
+     "reason": ""
+    },
+    {
+     "id": "P0020",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Bom dia, minha querida",
+     "reason": ""
+    },
+    {
+     "id": "S0162",
+     "label": "spam",
+     "decision": "allow",
+     "subject": "最新台灣省工商名錄-1-167-",
+     "reason": ""
+    },
+    {
+     "id": "P0154",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Claim Your Free 200 FREE SPINS Welcome Bonus!",
+     "reason": ""
+    },
+    {
+     "id": "S0168",
+     "label": "spam",
+     "decision": "allow",
+     "subject": "Eliminate Back Taxes Forever! ybf",
+     "reason": ""
+    },
+    {
+     "id": "HH0147",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "[GHSclassof1977] Boneheads",
+     "reason": ""
+    },
+    {
+     "id": "P0168",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Claim uw voordeel: Subsidie op thuisbatterijen nu beschikbaar",
+     "reason": ""
+    },
+    {
+     "id": "P0284",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Ripple Rewards XRP Holders: Find Out How",
+     "reason": ""
+    },
+    {
+     "id": "H0385",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Monkey or man?",
+     "reason": ""
+    },
+    {
+     "id": "H0459",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "[SAtalk] Reject, Blackhole, or Fake No-User?",
+     "reason": ""
+    },
+    {
+     "id": "H0401",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Pensioners and housebuyers suffer",
+     "reason": ""
+    },
+    {
+     "id": "S0161",
+     "label": "spam",
+     "decision": "allow",
+     "subject": "Toners and inkjet cartridges for less.... F",
+     "reason": ""
+    },
+    {
+     "id": "P0053",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "_Please_Affirm_Your_Reward_Worth_$90.00_",
+     "reason": ""
+    },
+    {
+     "id": "S0277",
+     "label": "spam",
+     "decision": "allow",
+     "subject": "College Coeds 2915",
+     "reason": ""
+    },
+    {
+     "id": "H0504",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "RIAA site hacked overnight",
+     "reason": ""
+    },
+    {
+     "id": "P0341",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "-U heeft (1).pakket dat op bezorging-wacht...!.OHSSALLWCC pFMM..pFMM",
+     "reason": ""
+    },
+    {
+     "id": "P0082",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "**REAVISO** Auto de Vistoria do Corpo de Bombeiros - Comunicado Importante N:83648",
+     "reason": ""
+    },
+    {
+     "id": "HH0096",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "CuteFTP exclusive: OmniPage Pro with DNS",
+     "reason": ""
+    },
+    {
+     "id": "P0387",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "URGENTE: irregularidade fiscal detectada - risco imediato ao CPF - ID: 77831584",
+     "reason": ""
+    },
+    {
+     "id": "P0386",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Heey! Leuk dat je kijkt... 😉",
+     "reason": ""
+    },
+    {
+     "id": "P0379",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "400% boost up to €2000",
+     "reason": ""
+    },
+    {
+     "id": "P0438",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Você alcançou o cartão Black, mas há algo que você não pode perder! Bem-vindo ao Bradesco Prime",
+     "reason": ""
+    },
+    {
+     "id": "P0024",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Receita Federal: Divergência identificada na base cadastral. Ref: 455406015/2026",
+     "reason": ""
+    },
+    {
+     "id": "HH0107",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "[Lockergnome Windows Daily] Dignity Shakedown",
+     "reason": ""
+    },
+    {
+     "id": "S0106",
+     "label": "spam",
+     "decision": "allow",
+     "subject": "Toners and inkjet cartridges for less.... GG",
+     "reason": ""
+    },
+    {
+     "id": "P0531",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Wie komt mijn avontuur compleet maken?",
+     "reason": ""
+    },
+    {
+     "id": "H0171",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "UK 'should ban nuclear arms'",
+     "reason": ""
+    },
+    {
+     "id": "P0461",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Attention??",
+     "reason": ""
+    },
+    {
+     "id": "H0028",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: bad focus/click behaviours",
+     "reason": ""
+    },
+    {
+     "id": "H0211",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "[Spambayes] test sets?",
+     "reason": ""
+    },
+    {
+     "id": "H0073",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "MacOS X (Re: [SAtalk] [OT] Habeas-talk (was: 2.40 RELEASE: oops -- newer freqs.))",
+     "reason": ""
+    },
+    {
+     "id": "P0217",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "30-03-2026 - Tijdelijke kans: thuisbatterij z��nder investering, ook in uw gemeente - 5106156",
+     "reason": ""
+    },
+    {
+     "id": "P0518",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Bol - Orderbevestiging - Laatste Dag - Er ligt een BOL waardebon voor u klaar ����",
+     "reason": ""
+    },
+    {
+     "id": "P0177",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Complete Verification",
+     "reason": ""
+    },
+    {
+     "id": "S0276",
+     "label": "spam",
+     "decision": "allow",
+     "subject": "WebDesignHQ Newsletter",
+     "reason": ""
+    }
+   ]
+  },
+  "investigator": {
+   "metrics": {
+    "emails": 783,
+    "correct": 416,
+    "accuracy": 0.531,
+    "false_positives": 7,
+    "missed_threats": 61,
+    "missed_phishing": 35,
+    "escalated": 299,
+    "tool_calls": 2157,
+    "avg_tool_calls": 2.75,
+    "total_reward": 209.6,
+    "avg_reward": 0.268,
+    "score": 0.634,
+    "precision": 0.965,
+    "recall": 0.443,
+    "f1": 0.608,
+    "false_positive_rate": 0.02,
+    "phishing_miss_rate": 0.124,
+    "threats_quarantined_or_escalated": 0.859,
+    "escalation_rate": 0.382
+   },
+   "confusion": {
+    "legit->allow": 224,
+    "legit->escalate": 119,
+    "legit->quarantine": 7,
+    "phishing->allow": 35,
+    "phishing->escalate": 91,
+    "phishing->quarantine": 157,
+    "spam->allow": 26,
+    "spam->escalate": 89,
+    "spam->quarantine": 35
+   },
+   "errors": [
+    {
+     "id": "P0020",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Bom dia, minha querida",
+     "reason": "No strong warning sign (average risk 0.17)"
+    },
+    {
+     "id": "S0162",
+     "label": "spam",
+     "decision": "allow",
+     "subject": "最新台灣省工商名錄-1-167-",
+     "reason": "No strong warning sign (average risk 0.22)"
+    },
+    {
+     "id": "S0254",
+     "label": "spam",
+     "decision": "allow",
+     "subject": "new domain extensions are now affordable",
+     "reason": "No strong warning sign (average risk 0.25)"
+    },
+    {
+     "id": "P0432",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "You’ve got new messages from Aamir Bakht",
+     "reason": "No strong warning sign (average risk 0.23)"
+    },
+    {
+     "id": "P0379",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "400% boost up to €2000",
+     "reason": "No strong warning sign (average risk 0.22)"
+    },
+    {
+     "id": "S0276",
+     "label": "spam",
+     "decision": "allow",
+     "subject": "WebDesignHQ Newsletter",
+     "reason": "No strong warning sign (average risk 0.25)"
+    },
+    {
+     "id": "P0028",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "��Conoce a tu hermosa esposa ucraniana, you@example.com, hoy!",
+     "reason": "No strong warning sign (average risk 0.25)"
+    },
+    {
+     "id": "P0454",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Attractive Ukrainian Beauties",
+     "reason": "No strong warning sign (average risk 0.25)"
+    },
+    {
+     "id": "P0128",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "New protonmail.com Shared_Document_ 0DFDA1C6",
+     "reason": "No strong warning sign (average risk 0.20)"
+    },
+    {
+     "id": "P0201",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Ourocard - Liberacao.VXfQMHkaoGC4YFK4kX1",
+     "reason": "No strong warning sign (average risk 0.17)"
+    },
+    {
+     "id": "P0482",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Your Celsius Account Update & Withdrawal Process",
+     "reason": "No strong warning sign (average risk 0.21)"
+    },
+    {
+     "id": "P0164",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Order Confirmation Alert",
+     "reason": "No strong warning sign (average risk 0.17)"
+    },
+    {
+     "id": "P0396",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Hello",
+     "reason": "No strong warning sign (average risk 0.22)"
+    },
+    {
+     "id": "P0560",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Your_transaction_0.7495_Bitcoin_",
+     "reason": "No strong warning sign (average risk 0.17)"
+    },
+    {
+     "id": "S0239",
+     "label": "spam",
+     "decision": "allow",
+     "subject": "FREE ORIGINAL STAR WARS CARS Adv:",
+     "reason": "No strong warning sign (average risk 0.25)"
+    },
+    {
+     "id": "P0249",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "We're sending Your Order on Friday, 22 November 2024 Paid",
+     "reason": "No strong warning sign (average risk 0.23)"
+    },
+    {
+     "id": "P0551",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "We have recently updated the terms on Thu, March 26, 2026",
+     "reason": "No strong warning sign (average risk 0.18)"
+    },
+    {
+     "id": "P0238",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "FTX Trading Ltd., et al, Case No. 22-11068, US Bankruptcy Court for the District of Delaware",
+     "reason": "No strong warning sign (average risk 0.24)"
+    },
+    {
+     "id": "P0293",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Invoice 73_RSJZ896543 purchase confirmation P9M4-KWX3X-WTZ903R",
+     "reason": "No strong warning sign (average risk 0.17)"
+    },
+    {
+     "id": "P0447",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "SEUS $350.000,00 ESTÃO ATUALMENTE COM A WESTERN UNION",
+     "reason": "No strong warning sign (average risk 0.17)"
+    },
+    {
+     "id": "P0440",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "TRIBUNAL REGIONAL DO TRABALHO DA 12ª REGIÃO",
+     "reason": "No strong warning sign (average risk 0.20)"
+    },
+    {
+     "id": "P0142",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Important Update: Your KLFKZFC Order is Now Processed",
+     "reason": "No strong warning sign (average risk 0.17)"
+    },
+    {
+     "id": "HH0099",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Personal laser picks for students, SOHO users, and more! (ZDNET SHOPPER)",
+     "reason": "Wording: money lure ($1,467); urgency or threat (expire); bulk-spam wording (lowest price); promotional wording (free)"
+    },
+    {
+     "id": "S0011",
+     "label": "spam",
+     "decision": "allow",
+     "subject": "好聽ㄉ音樂送給你",
+     "reason": "No strong warning sign (average risk 0.22)"
+    },
+    {
+     "id": "P0344",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "���� Sichern Sie sich jetzt 50% Rabatt auf Alviona Body Flow ��� Gib dir selbst die Promi-Behandlung, verpassen Sie es nicht! Gewichtsreduktion garantiert!",
+     "reason": "No strong warning sign (average risk 0.20)"
+    },
+    {
+     "id": "S0278",
+     "label": "spam",
+     "decision": "allow",
+     "subject": "[SA] Job Update",
+     "reason": "No strong warning sign (average risk 0.25)"
+    },
+    {
+     "id": "S0006",
+     "label": "spam",
+     "decision": "allow",
+     "subject": "Free Adult.. No Charges!",
+     "reason": "No strong warning sign (average risk 0.25)"
+    },
+    {
+     "id": "H0490",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: [ILUG] hard- vs. soft-links [was: How to copy some files ]",
+     "reason": "Claims to be 'Yahoo' but yahoo.co.uk is not an official Yahoo domain"
+    },
+    {
+     "id": "S0042",
+     "label": "spam",
+     "decision": "allow",
+     "subject": "[ILUG] THE TRUTH OF INTERNET MARKETING--A REALISTIC WAY OF MARKETING",
+     "reason": "No strong warning sign (average risk 0.25)"
+    },
+    {
+     "id": "S0053",
+     "label": "spam",
+     "decision": "allow",
+     "subject": "Production Mini-plants in mobile containers. Co-investment Program",
+     "reason": "No strong warning sign (average risk 0.17)"
+    },
+    {
+     "id": "P0206",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "but new not and he was delightful",
+     "reason": "No strong warning sign (average risk 0.17)"
+    },
+    {
+     "id": "S0294",
+     "label": "spam",
+     "decision": "allow",
+     "subject": "免費無限次任打中港長途電話",
+     "reason": "No strong warning sign (average risk 0.17)"
+    },
+    {
+     "id": "S0075",
+     "label": "spam",
+     "decision": "allow",
+     "subject": "[ILUG] Seeking Your Partnership",
+     "reason": "No strong warning sign (average risk 0.22)"
+    },
+    {
+     "id": "S0235",
+     "label": "spam",
+     "decision": "allow",
+     "subject": "(no subject)",
+     "reason": "No strong warning sign (average risk 0.25)"
+    },
+    {
+     "id": "P0037",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "���� Belangrijke-informatie: subsidie voor uw kunststof-kozijnen.. 2025.11.03-08.27.41 ���� #7330144",
+     "reason": "No strong warning sign (average risk 0.17)"
+    },
+    {
+     "id": "HH0006",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Do you dream of the latest gadgets? (ZDNET SHOPPER)",
+     "reason": "Wording: money lure (win, $2,999); urgency or threat (expire); bulk-spam wording (lowest price); promotional wording (free)"
+    },
+    {
+     "id": "S0142",
+     "label": "spam",
+     "decision": "allow",
+     "subject": "HIZLI & SINIRSIZ sex",
+     "reason": "No strong warning sign (average risk 0.22)"
+    },
+    {
+     "id": "P0236",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Faites le point sur vos droits",
+     "reason": "No strong warning sign (average risk 0.20)"
+    },
+    {
+     "id": "P0289",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Bom dia",
+     "reason": "No strong warning sign (average risk 0.17)"
+    },
+    {
+     "id": "P0390",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Kinguin’s Inactive Accounts Policy Update",
+     "reason": "No strong warning sign (average risk 0.18)"
+    }
+   ]
+  },
+  "policy gradient (seed0)": {
+   "metrics": {
+    "emails": 783,
+    "correct": 558,
+    "accuracy": 0.713,
+    "false_positives": 78,
+    "missed_threats": 53,
+    "missed_phishing": 36,
+    "escalated": 94,
+    "tool_calls": 1065,
+    "avg_tool_calls": 1.36,
+    "total_reward": 360.35,
+    "avg_reward": 0.46,
+    "score": 0.73,
+    "precision": 0.811,
+    "recall": 0.771,
+    "f1": 0.791,
+    "false_positive_rate": 0.223,
+    "phishing_miss_rate": 0.127,
+    "threats_quarantined_or_escalated": 0.878,
+    "escalation_rate": 0.12
+   },
+   "confusion": {
+    "legit->allow": 224,
+    "legit->escalate": 48,
+    "legit->quarantine": 78,
+    "phishing->allow": 36,
+    "phishing->escalate": 31,
+    "phishing->quarantine": 216,
+    "spam->allow": 17,
+    "spam->escalate": 15,
+    "spam->quarantine": 118
+   },
+   "errors": [
+    {
+     "id": "P0020",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Bom dia, minha querida",
+     "reason": "Learned policy: 59% for allow; strongest evidence: Wording looks normal"
+    },
+    {
+     "id": "S0162",
+     "label": "spam",
+     "decision": "allow",
+     "subject": "最新台灣省工商名錄-1-167-",
+     "reason": "Learned policy: 100% for allow; strongest evidence: No warning signs for ms35.hinet.net. Not fully verified: 2 lookup(s) unavailable"
+    },
+    {
+     "id": "HH0081",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Terry Pratchett - AuthorTracker News from HarperCollins",
+     "reason": "Learned policy: 100% for quarantine; strongest evidence: Wording: bulk-spam wording (click here); promotional wording (sale, unsubscribe)"
+    },
+    {
+     "id": "HH0147",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "[GHSclassof1977] Boneheads",
+     "reason": "Learned policy: 100% for quarantine; strongest evidence: Wording: bulk-spam wording (risk free); promotional wording (free, unsubscribe)"
+    },
+    {
+     "id": "H0385",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Monkey or man?",
+     "reason": "Learned policy: 100% for quarantine; strongest evidence: Wording: urgency or threat (suspen)"
+    },
+    {
+     "id": "H0200",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: HD/ID: High-Def Independence Day",
+     "reason": "Learned policy: 100% for quarantine; strongest evidence: Wording: asks for credentials (password)"
+    },
+    {
+     "id": "P0053",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "_Please_Affirm_Your_Reward_Worth_$90.00_",
+     "reason": "Learned policy: 100% for allow; strongest evidence: Personal free-mail address"
+    },
+    {
+     "id": "H0103",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: Forged whitelist spam",
+     "reason": "Learned policy: 100% for quarantine; strongest evidence: Wording: asks for credentials (password)"
+    },
+    {
+     "id": "HH0096",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "CuteFTP exclusive: OmniPage Pro with DNS",
+     "reason": "Learned policy: 100% for quarantine; strongest evidence: Wording: urgency or threat (expire); bulk-spam wording (click here, act now); promotional wording (free, offer)"
+    },
+    {
+     "id": "P0379",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "400% boost up to €2000",
+     "reason": "Learned policy: 100% for allow; strongest evidence: No warning signs for methiopical.com. Not fully verified: 2 lookup(s) unavailable"
+    },
+    {
+     "id": "P0438",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Você alcançou o cartão Black, mas há algo que você não pode perder! Bem-vindo ao Bradesco Prime",
+     "reason": "Learned policy: 100% for allow; strongest evidence: No warning signs for bradesco.com.br. Not fully verified: 2 lookup(s) unavailable"
+    },
+    {
+     "id": "HH0107",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "[Lockergnome Windows Daily] Dignity Shakedown",
+     "reason": "Learned policy: 100% for quarantine; strongest evidence: Wording: bulk-spam wording (click here); promotional wording (free, unsubscribe)"
+    },
+    {
+     "id": "H0171",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "UK 'should ban nuclear arms'",
+     "reason": "Learned policy: 100% for quarantine; strongest evidence: Wording: urgency or threat (immediately)"
+    },
+    {
+     "id": "P0461",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Attention??",
+     "reason": "Learned policy: 59% for allow; strongest evidence: Wording looks normal"
+    },
+    {
+     "id": "H0211",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "[Spambayes] test sets?",
+     "reason": "Learned policy: 100% for quarantine; strongest evidence: Wording: promotional wording (offer)"
+    },
+    {
+     "id": "P0217",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "30-03-2026 - Tijdelijke kans: thuisbatterij z��nder investering, ook in uw gemeente - 5106156",
+     "reason": "Learned policy: 99% for allow; strongest evidence: Replies go to a different domain (waavgvqdcn.)"
+    },
+    {
+     "id": "H0357",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: [ILUG] Backup solutions",
+     "reason": "Learned policy: 100% for quarantine; strongest evidence: Wording: urgency or threat (immediately)"
+    },
+    {
+     "id": "H0541",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: [Baseline] Raising chickens the high-tech way",
+     "reason": "Learned policy: 100% for quarantine; strongest evidence: Wording: money lure (inheritance)"
+    },
+    {
+     "id": "P0128",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "New protonmail.com Shared_Document_ 0DFDA1C6",
+     "reason": "Learned policy: 100% for allow; strongest evidence: No warning signs for geropharm.com. Not fully verified: 2 lookup(s) unavailable"
+    },
+    {
+     "id": "HH0129",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Canon USA Reseller News : July",
+     "reason": "Learned policy: 100% for quarantine; strongest evidence: Wording: money lure (bonus)"
+    },
+    {
+     "id": "P0409",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "������������ ���������������������������� : ������������ ������������ ������������ �������������������� ������������������������ !���������������������������� ������������������������ ���������������� ������������",
+     "reason": "Learned policy: 100% for allow; strongest evidence: No warning signs for dsrgthyjnbvdc2.mediaatetouan.xyz. Not fully verified: 2 lookup(s) unavailable"
+    },
+    {
+     "id": "HH0143",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "NEWS.COM INVESTOR: Techs fall with consumer sentiment",
+     "reason": "Learned policy: 100% for quarantine; strongest evidence: Wording: money lure ($500,000)"
+    },
+    {
+     "id": "H0342",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: sed /s/United States/Roman Empire/g",
+     "reason": "Learned policy: 100% for quarantine; strongest evidence: Wording: promotional wording (free)"
+    },
+    {
+     "id": "HH0067",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "More Freebies with Ryanair.com",
+     "reason": "Learned policy: 100% for quarantine; strongest evidence: Wording: urgency or threat (immediately); asks for secrecy (confidential); promotional wording (free, sale)"
+    },
+    {
+     "id": "P0482",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Your Celsius Account Update & Withdrawal Process",
+     "reason": "Learned policy: 100% for allow; strongest evidence: No warning signs for feedspot.com. Not fully verified: 2 lookup(s) unavailable"
+    },
+    {
+     "id": "P0164",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Order Confirmation Alert",
+     "reason": "Learned policy: 59% for allow; strongest evidence: Wording looks normal"
+    },
+    {
+     "id": "H0384",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Fall in value of mortgages indicates housing slowdown",
+     "reason": "Learned policy: 100% for quarantine; strongest evidence: Wording: bulk-spam wording (mortgage)"
+    },
+    {
+     "id": "H0327",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: [SAtalk] Highest-scoring false positive",
+     "reason": "Learned policy: 100% for quarantine; strongest evidence: Wording: bulk-spam wording (to be removed); promotional wording (free)"
+    },
+    {
+     "id": "P0396",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Hello",
+     "reason": "Learned policy: 100% for allow; strongest evidence: No warning signs for rapidsoft.co.in. Not fully verified: 2 lookup(s) unavailable"
+    },
+    {
+     "id": "HH0138",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "[Lockergnome Tech Specialist] Friend Fry",
+     "reason": "Learned policy: 100% for quarantine; strongest evidence: Wording: bulk-spam wording (click here); promotional wording (unsubscribe)"
+    },
+    {
+     "id": "H0174",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: The absurdities of life.",
+     "reason": "Learned policy: 100% for quarantine; strongest evidence: Wording: money lure (refund)"
+    },
+    {
+     "id": "S0200",
+     "label": "spam",
+     "decision": "allow",
+     "subject": "Friend, Act FAST! Getting a CREDIT CARD is as easy as 1,2,3!",
+     "reason": "Learned policy: 99% for allow; strongest evidence: Replies go to a different domain (einstein.ssz.com)"
+    },
+    {
+     "id": "H0470",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: [gst-devel] Red Hat 8.0",
+     "reason": "Learned policy: 100% for quarantine; strongest evidence: Wording: urgency or threat (urgent)"
+    },
+    {
+     "id": "P0506",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Skin Motion Featured Soundwave Tattoo",
+     "reason": "Learned policy: 100% for allow; strongest evidence: No warning signs for skinmotion.com. Not fully verified: 2 lookup(s) unavailable"
+    },
+    {
+     "id": "H0510",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Amorous ostriches scoop Ig Nobel prize",
+     "reason": "Learned policy: 100% for quarantine; strongest evidence: Wording: money lure (prize)"
+    },
+    {
+     "id": "S0192",
+     "label": "spam",
+     "decision": "allow",
+     "subject": "Checking Account update",
+     "reason": "Learned policy: 99% for allow; strongest evidence: Replies go to a different domain (einstein.ssz.com)"
+    },
+    {
+     "id": "P0447",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "SEUS $350.000,00 ESTÃO ATUALMENTE COM A WESTERN UNION",
+     "reason": "Learned policy: 59% for allow; strongest evidence: Wording looks normal"
+    },
+    {
+     "id": "P0440",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "TRIBUNAL REGIONAL DO TRABALHO DA 12ª REGIÃO",
+     "reason": "Learned policy: 100% for allow; strongest evidence: No warning signs for setta.com.br. Not fully verified: 2 lookup(s) unavailable"
+    },
+    {
+     "id": "HH0046",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "[MLB-WIRELESS] FW: Cisco Wireless LAN Solutions",
+     "reason": "Learned policy: 100% for quarantine; strongest evidence: Wording: bulk-spam wording (click here); promotional wording (free, unsubscribe)"
+    },
+    {
+     "id": "H0528",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: Oh my...",
+     "reason": "Learned policy: 100% for quarantine; strongest evidence: Wording: asks for credentials (password)"
+    }
+   ]
+  },
+  "policy gradient (seed1)": {
+   "metrics": {
+    "emails": 783,
+    "correct": 553,
+    "accuracy": 0.706,
+    "false_positives": 72,
+    "missed_threats": 58,
+    "missed_phishing": 41,
+    "escalated": 100,
+    "tool_calls": 1065,
+    "avg_tool_calls": 1.36,
+    "total_reward": 353.15,
+    "avg_reward": 0.451,
+    "score": 0.726,
+    "precision": 0.82,
+    "recall": 0.758,
+    "f1": 0.788,
+    "false_positive_rate": 0.206,
+    "phishing_miss_rate": 0.145,
+    "threats_quarantined_or_escalated": 0.866,
+    "escalation_rate": 0.128
+   },
+   "confusion": {
+    "legit->allow": 225,
+    "legit->escalate": 53,
+    "legit->quarantine": 72,
+    "phishing->allow": 41,
+    "phishing->escalate": 30,
+    "phishing->quarantine": 212,
+    "spam->allow": 17,
+    "spam->escalate": 17,
+    "spam->quarantine": 116
+   },
+   "errors": [
+    {
+     "id": "P0020",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Bom dia, minha querida",
+     "reason": "Learned policy: 56% for allow; strongest evidence: Wording looks normal"
+    },
+    {
+     "id": "S0162",
+     "label": "spam",
+     "decision": "allow",
+     "subject": "最新台灣省工商名錄-1-167-",
+     "reason": "Learned policy: 81% for allow; strongest evidence: No warning signs for ms35.hinet.net. Not fully verified: 2 lookup(s) unavailable"
+    },
+    {
+     "id": "HH0081",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Terry Pratchett - AuthorTracker News from HarperCollins",
+     "reason": "Learned policy: 98% for quarantine; strongest evidence: Wording: bulk-spam wording (click here); promotional wording (sale, unsubscribe)"
+    },
+    {
+     "id": "HH0147",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "[GHSclassof1977] Boneheads",
+     "reason": "Learned policy: 98% for quarantine; strongest evidence: Wording: bulk-spam wording (risk free); promotional wording (free, unsubscribe)"
+    },
+    {
+     "id": "H0385",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Monkey or man?",
+     "reason": "Learned policy: 80% for quarantine; strongest evidence: Wording: urgency or threat (suspen)"
+    },
+    {
+     "id": "H0200",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: HD/ID: High-Def Independence Day",
+     "reason": "Learned policy: 98% for quarantine; strongest evidence: Wording: asks for credentials (password)"
+    },
+    {
+     "id": "P0053",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "_Please_Affirm_Your_Reward_Worth_$90.00_",
+     "reason": "Learned policy: 81% for allow; strongest evidence: Personal free-mail address"
+    },
+    {
+     "id": "H0103",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: Forged whitelist spam",
+     "reason": "Learned policy: 98% for quarantine; strongest evidence: Wording: asks for credentials (password)"
+    },
+    {
+     "id": "HH0096",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "CuteFTP exclusive: OmniPage Pro with DNS",
+     "reason": "Learned policy: 100% for quarantine; strongest evidence: Wording: urgency or threat (expire); bulk-spam wording (click here, act now); promotional wording (free, offer)"
+    },
+    {
+     "id": "P0379",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "400% boost up to €2000",
+     "reason": "Learned policy: 81% for allow; strongest evidence: No warning signs for methiopical.com. Not fully verified: 2 lookup(s) unavailable"
+    },
+    {
+     "id": "P0438",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Você alcançou o cartão Black, mas há algo que você não pode perder! Bem-vindo ao Bradesco Prime",
+     "reason": "Learned policy: 81% for allow; strongest evidence: No warning signs for bradesco.com.br. Not fully verified: 2 lookup(s) unavailable"
+    },
+    {
+     "id": "P0024",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Receita Federal: Divergência identificada na base cadastral. Ref: 455406015/2026",
+     "reason": "Learned policy: 35% for allow; strongest evidence: Sender domain cpfregularizacao848287 looks machine-generated"
+    },
+    {
+     "id": "HH0107",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "[Lockergnome Windows Daily] Dignity Shakedown",
+     "reason": "Learned policy: 98% for quarantine; strongest evidence: Wording: bulk-spam wording (click here); promotional wording (free, unsubscribe)"
+    },
+    {
+     "id": "H0171",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "UK 'should ban nuclear arms'",
+     "reason": "Learned policy: 80% for quarantine; strongest evidence: Wording: urgency or threat (immediately)"
+    },
+    {
+     "id": "P0461",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Attention??",
+     "reason": "Learned policy: 56% for allow; strongest evidence: Wording looks normal"
+    },
+    {
+     "id": "P0217",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "30-03-2026 - Tijdelijke kans: thuisbatterij z��nder investering, ook in uw gemeente - 5106156",
+     "reason": "Learned policy: 62% for allow; strongest evidence: Replies go to a different domain (waavgvqdcn.)"
+    },
+    {
+     "id": "H0357",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: [ILUG] Backup solutions",
+     "reason": "Learned policy: 80% for quarantine; strongest evidence: Wording: urgency or threat (immediately)"
+    },
+    {
+     "id": "H0541",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: [Baseline] Raising chickens the high-tech way",
+     "reason": "Learned policy: 94% for quarantine; strongest evidence: Wording: money lure (inheritance)"
+    },
+    {
+     "id": "P0128",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "New protonmail.com Shared_Document_ 0DFDA1C6",
+     "reason": "Learned policy: 81% for allow; strongest evidence: No warning signs for geropharm.com. Not fully verified: 2 lookup(s) unavailable"
+    },
+    {
+     "id": "HH0129",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Canon USA Reseller News : July",
+     "reason": "Learned policy: 94% for quarantine; strongest evidence: Wording: money lure (bonus)"
+    },
+    {
+     "id": "P0409",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "������������ ���������������������������� : ������������ ������������ ������������ �������������������� ������������������������ !���������������������������� ������������������������ ���������������� ������������",
+     "reason": "Learned policy: 81% for allow; strongest evidence: No warning signs for dsrgthyjnbvdc2.mediaatetouan.xyz. Not fully verified: 2 lookup(s) unavailable"
+    },
+    {
+     "id": "HH0143",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "NEWS.COM INVESTOR: Techs fall with consumer sentiment",
+     "reason": "Learned policy: 94% for quarantine; strongest evidence: Wording: money lure ($500,000)"
+    },
+    {
+     "id": "HH0067",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "More Freebies with Ryanair.com",
+     "reason": "Learned policy: 100% for quarantine; strongest evidence: Wording: urgency or threat (immediately); asks for secrecy (confidential); promotional wording (free, sale)"
+    },
+    {
+     "id": "P0482",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Your Celsius Account Update & Withdrawal Process",
+     "reason": "Learned policy: 81% for allow; strongest evidence: No warning signs for feedspot.com. Not fully verified: 2 lookup(s) unavailable"
+    },
+    {
+     "id": "P0164",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Order Confirmation Alert",
+     "reason": "Learned policy: 56% for allow; strongest evidence: Wording looks normal"
+    },
+    {
+     "id": "H0384",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Fall in value of mortgages indicates housing slowdown",
+     "reason": "Learned policy: 80% for quarantine; strongest evidence: Wording: bulk-spam wording (mortgage)"
+    },
+    {
+     "id": "H0327",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: [SAtalk] Highest-scoring false positive",
+     "reason": "Learned policy: 98% for quarantine; strongest evidence: Wording: bulk-spam wording (to be removed); promotional wording (free)"
+    },
+    {
+     "id": "P0268",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Cobrança de pedágio: regularize antes do prazo final - ID: 623457534",
+     "reason": "Learned policy: 35% for allow; strongest evidence: Sender domain pedagiodigital263596 looks machine-generated"
+    },
+    {
+     "id": "P0396",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Hello",
+     "reason": "Learned policy: 81% for allow; strongest evidence: No warning signs for rapidsoft.co.in. Not fully verified: 2 lookup(s) unavailable"
+    },
+    {
+     "id": "HH0138",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "[Lockergnome Tech Specialist] Friend Fry",
+     "reason": "Learned policy: 98% for quarantine; strongest evidence: Wording: bulk-spam wording (click here); promotional wording (unsubscribe)"
+    },
+    {
+     "id": "H0174",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: The absurdities of life.",
+     "reason": "Learned policy: 94% for quarantine; strongest evidence: Wording: money lure (refund)"
+    },
+    {
+     "id": "S0200",
+     "label": "spam",
+     "decision": "allow",
+     "subject": "Friend, Act FAST! Getting a CREDIT CARD is as easy as 1,2,3!",
+     "reason": "Learned policy: 62% for allow; strongest evidence: Replies go to a different domain (einstein.ssz.com)"
+    },
+    {
+     "id": "H0470",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: [gst-devel] Red Hat 8.0",
+     "reason": "Learned policy: 80% for quarantine; strongest evidence: Wording: urgency or threat (urgent)"
+    },
+    {
+     "id": "P0506",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "Skin Motion Featured Soundwave Tattoo",
+     "reason": "Learned policy: 81% for allow; strongest evidence: No warning signs for skinmotion.com. Not fully verified: 2 lookup(s) unavailable"
+    },
+    {
+     "id": "H0510",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Amorous ostriches scoop Ig Nobel prize",
+     "reason": "Learned policy: 94% for quarantine; strongest evidence: Wording: money lure (prize)"
+    },
+    {
+     "id": "S0192",
+     "label": "spam",
+     "decision": "allow",
+     "subject": "Checking Account update",
+     "reason": "Learned policy: 62% for allow; strongest evidence: Replies go to a different domain (einstein.ssz.com)"
+    },
+    {
+     "id": "P0447",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "SEUS $350.000,00 ESTÃO ATUALMENTE COM A WESTERN UNION",
+     "reason": "Learned policy: 56% for allow; strongest evidence: Wording looks normal"
+    },
+    {
+     "id": "P0440",
+     "label": "phishing",
+     "decision": "allow",
+     "subject": "TRIBUNAL REGIONAL DO TRABALHO DA 12ª REGIÃO",
+     "reason": "Learned policy: 81% for allow; strongest evidence: No warning signs for setta.com.br. Not fully verified: 2 lookup(s) unavailable"
+    },
+    {
+     "id": "HH0046",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "[MLB-WIRELESS] FW: Cisco Wireless LAN Solutions",
+     "reason": "Learned policy: 98% for quarantine; strongest evidence: Wording: bulk-spam wording (click here); promotional wording (free, unsubscribe)"
+    },
+    {
+     "id": "H0528",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: Oh my...",
+     "reason": "Learned policy: 98% for quarantine; strongest evidence: Wording: asks for credentials (password)"
+    }
+   ]
+  },
+  "policy gradient (seed2)": {
+   "metrics": {
+    "emails": 783,
+    "correct": 291,
+    "accuracy": 0.372,
+    "false_positives": 72,
+    "missed_threats": 0,
+    "missed_phishing": 0,
+    "escalated": 420,
+    "tool_calls": 783,
+    "avg_tool_calls": 1.0,
+    "total_reward": 305.85,
+    "avg_reward": 0.391,
+    "score": 0.695,
+    "precision": 0.802,
+    "recall": 0.672,
+    "f1": 0.731,
+    "false_positive_rate": 0.206,
+    "phishing_miss_rate": 0.0,
+    "threats_quarantined_or_escalated": 1.0,
+    "escalation_rate": 0.536
+   },
+   "confusion": {
+    "legit->escalate": 278,
+    "legit->quarantine": 72,
+    "phishing->escalate": 108,
+    "phishing->quarantine": 175,
+    "spam->escalate": 34,
+    "spam->quarantine": 116
+   },
+   "errors": [
+    {
+     "id": "HH0081",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Terry Pratchett - AuthorTracker News from HarperCollins",
+     "reason": "Learned policy: 60% for quarantine; strongest evidence: Wording: bulk-spam wording (click here); promotional wording (sale, unsubscribe)"
+    },
+    {
+     "id": "HH0147",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "[GHSclassof1977] Boneheads",
+     "reason": "Learned policy: 60% for quarantine; strongest evidence: Wording: bulk-spam wording (risk free); promotional wording (free, unsubscribe)"
+    },
+    {
+     "id": "H0385",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Monkey or man?",
+     "reason": "Learned policy: 37% for quarantine; strongest evidence: Wording: urgency or threat (suspen)"
+    },
+    {
+     "id": "H0200",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: HD/ID: High-Def Independence Day",
+     "reason": "Learned policy: 60% for quarantine; strongest evidence: Wording: asks for credentials (password)"
+    },
+    {
+     "id": "H0103",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: Forged whitelist spam",
+     "reason": "Learned policy: 60% for quarantine; strongest evidence: Wording: asks for credentials (password)"
+    },
+    {
+     "id": "HH0096",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "CuteFTP exclusive: OmniPage Pro with DNS",
+     "reason": "Learned policy: 88% for quarantine; strongest evidence: Wording: urgency or threat (expire); bulk-spam wording (click here, act now); promotional wording (free, offer)"
+    },
+    {
+     "id": "HH0107",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "[Lockergnome Windows Daily] Dignity Shakedown",
+     "reason": "Learned policy: 60% for quarantine; strongest evidence: Wording: bulk-spam wording (click here); promotional wording (free, unsubscribe)"
+    },
+    {
+     "id": "H0171",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "UK 'should ban nuclear arms'",
+     "reason": "Learned policy: 37% for quarantine; strongest evidence: Wording: urgency or threat (immediately)"
+    },
+    {
+     "id": "H0357",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: [ILUG] Backup solutions",
+     "reason": "Learned policy: 37% for quarantine; strongest evidence: Wording: urgency or threat (immediately)"
+    },
+    {
+     "id": "H0541",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: [Baseline] Raising chickens the high-tech way",
+     "reason": "Learned policy: 49% for quarantine; strongest evidence: Wording: money lure (inheritance)"
+    },
+    {
+     "id": "HH0129",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Canon USA Reseller News : July",
+     "reason": "Learned policy: 49% for quarantine; strongest evidence: Wording: money lure (bonus)"
+    },
+    {
+     "id": "HH0143",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "NEWS.COM INVESTOR: Techs fall with consumer sentiment",
+     "reason": "Learned policy: 49% for quarantine; strongest evidence: Wording: money lure ($500,000)"
+    },
+    {
+     "id": "HH0067",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "More Freebies with Ryanair.com",
+     "reason": "Learned policy: 88% for quarantine; strongest evidence: Wording: urgency or threat (immediately); asks for secrecy (confidential); promotional wording (free, sale)"
+    },
+    {
+     "id": "H0384",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Fall in value of mortgages indicates housing slowdown",
+     "reason": "Learned policy: 37% for quarantine; strongest evidence: Wording: bulk-spam wording (mortgage)"
+    },
+    {
+     "id": "H0327",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: [SAtalk] Highest-scoring false positive",
+     "reason": "Learned policy: 60% for quarantine; strongest evidence: Wording: bulk-spam wording (to be removed); promotional wording (free)"
+    },
+    {
+     "id": "HH0138",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "[Lockergnome Tech Specialist] Friend Fry",
+     "reason": "Learned policy: 60% for quarantine; strongest evidence: Wording: bulk-spam wording (click here); promotional wording (unsubscribe)"
+    },
+    {
+     "id": "H0174",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: The absurdities of life.",
+     "reason": "Learned policy: 59% for quarantine; strongest evidence: Wording: money lure (refund)"
+    },
+    {
+     "id": "H0470",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: [gst-devel] Red Hat 8.0",
+     "reason": "Learned policy: 37% for quarantine; strongest evidence: Wording: urgency or threat (urgent)"
+    },
+    {
+     "id": "H0510",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Amorous ostriches scoop Ig Nobel prize",
+     "reason": "Learned policy: 49% for quarantine; strongest evidence: Wording: money lure (prize)"
+    },
+    {
+     "id": "HH0046",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "[MLB-WIRELESS] FW: Cisco Wireless LAN Solutions",
+     "reason": "Learned policy: 60% for quarantine; strongest evidence: Wording: bulk-spam wording (click here); promotional wording (free, unsubscribe)"
+    },
+    {
+     "id": "H0528",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: Oh my...",
+     "reason": "Learned policy: 60% for quarantine; strongest evidence: Wording: asks for credentials (password)"
+    },
+    {
+     "id": "HH0011",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Subject: There's still time to enter Lifetime's New Season Sweeps!",
+     "reason": "Learned policy: 91% for quarantine; strongest evidence: Wording: money lure (win, $10,000); bulk-spam wording (to be removed); promotional wording (unsubscribe)"
+    },
+    {
+     "id": "HH0099",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Personal laser picks for students, SOHO users, and more! (ZDNET SHOPPER)",
+     "reason": "Learned policy: 96% for quarantine; strongest evidence: Wording: money lure ($1,467); urgency or threat (expire); bulk-spam wording (lowest price); promotional wording (free)"
+    },
+    {
+     "id": "H0419",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Live forever or die trying",
+     "reason": "Learned policy: 49% for quarantine; strongest evidence: Wording: money lure (prize)"
+    },
+    {
+     "id": "H0313",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: NYTimes.com Article: Why We're So Nice: We're Wired to Cooperate",
+     "reason": "Learned policy: 49% for quarantine; strongest evidence: Wording: money lure (win, reward)"
+    },
+    {
+     "id": "HH0080",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "This Weeks Movie Trivia Question from All Things New England",
+     "reason": "Learned policy: 91% for quarantine; strongest evidence: Wording: money lure (congratulations); bulk-spam wording (click here); promotional wording (free, discount, offer)"
+    },
+    {
+     "id": "H0227",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "[Spambayes] testing results",
+     "reason": "Learned policy: 59% for quarantine; strongest evidence: Wording: money lure (won)"
+    },
+    {
+     "id": "HH0116",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "IBM's thin ThinkPads fit to a T",
+     "reason": "Learned policy: 91% for quarantine; strongest evidence: Wording: money lure ($2,199); bulk-spam wording (click here); promotional wording (offer)"
+    },
+    {
+     "id": "H0389",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Save up to 70% on international calls!",
+     "reason": "Learned policy: 91% for quarantine; strongest evidence: Wording: money lure (won); asks for secrecy (confidential); promotional wording (offer)"
+    },
+    {
+     "id": "H0328",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: A message for our times",
+     "reason": "Learned policy: 60% for quarantine; strongest evidence: Wording: non-English account or payment lure (claim)"
+    },
+    {
+     "id": "H0502",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "[Razor-users] FW: [EVENT NOTIFICATION] UUnet North American Backbone Problems 2 0021003@06:00 PDT [TIX106448]",
+     "reason": "Learned policy: 45% for quarantine; strongest evidence: Wording: asks for secrecy (confidential)"
+    },
+    {
+     "id": "H0381",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: [Razor-users] dot-tk registrations hitting Razor",
+     "reason": "Learned policy: 78% for quarantine; strongest evidence: Wording: asks for credentials (password); promotional wording (free)"
+    },
+    {
+     "id": "HH0006",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Do you dream of the latest gadgets? (ZDNET SHOPPER)",
+     "reason": "Learned policy: 96% for quarantine; strongest evidence: Wording: money lure (win, $2,999); urgency or threat (expire); bulk-spam wording (lowest price); promotional wording (free)"
+    },
+    {
+     "id": "H0485",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: [ILUG] CVS question",
+     "reason": "Learned policy: 60% for quarantine; strongest evidence: Wording: asks for credentials (password)"
+    },
+    {
+     "id": "H0516",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: flavor cystals",
+     "reason": "Learned policy: 84% for quarantine; strongest evidence: Wording: money lure (won); urgency or threat (disconnect)"
+    },
+    {
+     "id": "H0236",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: [ILUG] [OT] GPL & PHP Question",
+     "reason": "Learned policy: 60% for quarantine; strongest evidence: Wording: non-English account or payment lure (claim)"
+    },
+    {
+     "id": "H0128",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Liberalism in America",
+     "reason": "Learned policy: 54% for quarantine; strongest evidence: Wording: promotional wording (free)"
+    },
+    {
+     "id": "H0513",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "Re: [ILUG] Sparc Solaris (was: Dell GX260 V Redhat 7.3)",
+     "reason": "Learned policy: 49% for quarantine; strongest evidence: Wording: money lure (won)"
+    },
+    {
+     "id": "HH0008",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "FC Sporadic for Wednesday, October 30, 2002",
+     "reason": "Learned policy: 49% for quarantine; strongest evidence: Wording: money lure (bonus)"
+    },
+    {
+     "id": "HH0002",
+     "label": "legit",
+     "decision": "quarantine",
+     "subject": "[Lockergnome Digital Media] Alphabet Speakerphone",
+     "reason": "Learned policy: 60% for quarantine; strongest evidence: Wording: bulk-spam wording (click here); promotional wording (free, unsubscribe)"
+    }
+   ]
+  }
+ },
+ "policy_gradient_mean": {
+  "precision": {
+   "mean": 0.811,
+   "std": 0.007
+  },
+  "recall": {
+   "mean": 0.734,
+   "std": 0.044
+  },
+  "f1": {
+   "mean": 0.77,
+   "std": 0.028
+  },
+  "false_positive_rate": {
+   "mean": 0.212,
+   "std": 0.008
+  },
+  "phishing_miss_rate": {
+   "mean": 0.091,
+   "std": 0.065
+  },
+  "escalation_rate": {
+   "mean": 0.261,
+   "std": 0.194
+  },
+  "avg_tool_calls": {
+   "mean": 1.24,
+   "std": 0.17
+  },
+  "avg_reward": {
+   "mean": 0.434,
+   "std": 0.031
+  }
+ },
+ "phishing_auth_profile": {
+  "emails": 283,
+  "with_auth_header": 282,
+  "spf": {
+   "pass": 124,
+   "fail": 67,
+   "none": 64,
+   "softfail": 10,
+   "temperror": 10,
+   "missing": 4,
+   "permerror": 3
+  },
+  "dkim": {
+   "pass": 139,
+   "none": 87,
+   "fail": 42,
+   "missing": 13,
+   "timeout": 1
+  },
+  "dmarc": {
+   "none": 133,
+   "pass": 68,
+   "bestguesspass": 31,
+   "permerror": 20,
+   "fail": 19,
+   "missing": 11
+  }
+ }
+}
