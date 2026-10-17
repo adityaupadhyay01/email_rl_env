@@ -1,0 +1,207 @@
+{
+ "split": "demo",
+ "emails": 34,
+ "intel_mode": "cache",
+ "labels": {
+  "legit": 15,
+  "phishing": 14,
+  "spam": 5
+ },
+ "agents": {
+  "keyword baseline": {
+   "metrics": {
+    "emails": 34,
+    "correct": 17,
+    "accuracy": 0.5,
+    "false_positives": 3,
+    "missed_threats": 14,
+    "missed_phishing": 12,
+    "escalated": 0,
+    "tool_calls": 0,
+    "avg_tool_calls": 0.0,
+    "total_reward": -11.0,
+    "avg_reward": -0.324,
+    "score": 0.338,
+    "precision": 0.625,
+    "recall": 0.263,
+    "f1": 0.37,
+    "false_positive_rate": 0.2,
+    "phishing_miss_rate": 0.857,
+    "threats_quarantined_or_escalated": 0.263,
+    "escalation_rate": 0.0
+   },
+   "confusion": {
+    "legit->allow": 12,
+    "legit->quarantine": 3,
+    "phishing->allow": 12,
+    "phishing->quarantine": 2,
+    "spam->allow": 2,
+    "spam->quarantine": 3
+   }
+  },
+  "investigator": {
+   "metrics": {
+    "emails": 34,
+    "correct": 24,
+    "accuracy": 0.706,
+    "false_positives": 1,
+    "missed_threats": 4,
+    "missed_phishing": 1,
+    "escalated": 5,
+    "tool_calls": 84,
+    "avg_tool_calls": 2.47,
+    "total_reward": 13.5,
+    "avg_reward": 0.397,
+    "score": 0.699,
+    "precision": 0.923,
+    "recall": 0.632,
+    "f1": 0.75,
+    "false_positive_rate": 0.067,
+    "phishing_miss_rate": 0.071,
+    "threats_quarantined_or_escalated": 0.789,
+    "escalation_rate": 0.147
+   },
+   "confusion": {
+    "legit->allow": 12,
+    "legit->escalate": 2,
+    "legit->quarantine": 1,
+    "phishing->allow": 1,
+    "phishing->escalate": 1,
+    "phishing->quarantine": 12,
+    "spam->allow": 3,
+    "spam->escalate": 2
+   }
+  },
+  "policy gradient (seed0)": {
+   "metrics": {
+    "emails": 34,
+    "correct": 23,
+    "accuracy": 0.676,
+    "false_positives": 5,
+    "missed_threats": 3,
+    "missed_phishing": 2,
+    "escalated": 3,
+    "tool_calls": 43,
+    "avg_tool_calls": 1.26,
+    "total_reward": 11.8,
+    "avg_reward": 0.347,
+    "score": 0.674,
+    "precision": 0.737,
+    "recall": 0.737,
+    "f1": 0.737,
+    "false_positive_rate": 0.333,
+    "phishing_miss_rate": 0.143,
+    "threats_quarantined_or_escalated": 0.842,
+    "escalation_rate": 0.088
+   },
+   "confusion": {
+    "legit->allow": 9,
+    "legit->escalate": 1,
+    "legit->quarantine": 5,
+    "phishing->allow": 2,
+    "phishing->quarantine": 12,
+    "spam->allow": 1,
+    "spam->escalate": 2,
+    "spam->quarantine": 2
+   }
+  },
+  "policy gradient (seed1)": {
+   "metrics": {
+    "emails": 34,
+    "correct": 23,
+    "accuracy": 0.676,
+    "false_positives": 5,
+    "missed_threats": 3,
+    "missed_phishing": 2,
+    "escalated": 3,
+    "tool_calls": 43,
+    "avg_tool_calls": 1.26,
+    "total_reward": 11.8,
+    "avg_reward": 0.347,
+    "score": 0.674,
+    "precision": 0.737,
+    "recall": 0.737,
+    "f1": 0.737,
+    "false_positive_rate": 0.333,
+    "phishing_miss_rate": 0.143,
+    "threats_quarantined_or_escalated": 0.842,
+    "escalation_rate": 0.088
+   },
+   "confusion": {
+    "legit->allow": 9,
+    "legit->escalate": 1,
+    "legit->quarantine": 5,
+    "phishing->allow": 2,
+    "phishing->quarantine": 12,
+    "spam->allow": 1,
+    "spam->escalate": 2,
+    "spam->quarantine": 2
+   }
+  },
+  "policy gradient (seed2)": {
+   "metrics": {
+    "emails": 34,
+    "correct": 14,
+    "accuracy": 0.412,
+    "false_positives": 4,
+    "missed_threats": 0,
+    "missed_phishing": 0,
+    "escalated": 16,
+    "tool_calls": 34,
+    "avg_tool_calls": 1.0,
+    "total_reward": 13.1,
+    "avg_reward": 0.385,
+    "score": 0.693,
+    "precision": 0.778,
+    "recall": 0.737,
+    "f1": 0.757,
+    "false_positive_rate": 0.267,
+    "phishing_miss_rate": 0.0,
+    "threats_quarantined_or_escalated": 1.0,
+    "escalation_rate": 0.471
+   },
+   "confusion": {
+    "legit->escalate": 11,
+    "legit->quarantine": 4,
+    "phishing->escalate": 2,
+    "phishing->quarantine": 12,
+    "spam->escalate": 3,
+    "spam->quarantine": 2
+   }
+  }
+ },
+ "policy_gradient_mean": {
+  "precision": {
+   "mean": 0.751,
+   "std": 0.019
+  },
+  "recall": {
+   "mean": 0.737,
+   "std": 0.0
+  },
+  "f1": {
+   "mean": 0.744,
+   "std": 0.009
+  },
+  "false_positive_rate": {
+   "mean": 0.311,
+   "std": 0.031
+  },
+  "phishing_miss_rate": {
+   "mean": 0.095,
+   "std": 0.067
+  },
+  "escalation_rate": {
+   "mean": 0.216,
+   "std": 0.181
+  },
+  "avg_tool_calls": {
+   "mean": 1.173,
+   "std": 0.123
+  },
+  "avg_reward": {
+   "mean": 0.36,
+   "std": 0.018
+  }
+ }
+}
